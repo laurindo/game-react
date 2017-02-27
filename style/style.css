@@ -1,0 +1,124 @@
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #eaeaea;
+}
+
+.toolbar {
+    background-color: #31a7fd;
+    padding: 20px;
+    color: #fff;
+}
+
+.menuStart {
+    background-color: #31a7fd;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    text-align: center;
+}
+
+/*
+    BUTTONS
+*/
+.btnStart, .btnYes, .btnNo {
+    border-radius: 30px;
+    background-color: #fff;
+    border: 0;
+    padding: 10px 30px;
+    font-size: 40px;
+    box-shadow: #808080 0px 2px 8px 0px;
+    color: #258ad4;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.btnYes, .btnNo {
+    float: left;
+    padding: 10px 30px;
+    font-size: 20px;
+    color: #fff;
+}
+.btnYes {
+    background-color: green;
+}
+.btnNo {
+    background-color: red;
+}
+
+.centerMenu {
+    margin-top: 20%;
+    position: absolute;
+    left: 50%;
+    z-index: 2;
+}
+
+.centerButton {
+    width: 100%;
+    text-align: center;
+}
+
+.content {
+    padding: 10px;
+}
+
+.card {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: #cccccc 0px 4px 4px 0px;
+}
+
+.card h5 {
+    color: #31a7fd;
+    text-align: center;
+    word-spacing: 6px;
+    line-height: 30px;
+}
+
+.card.dialog {
+    width: 500px;
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    left: 50%;
+    min-height: 200px;
+}
+
+.card.dialog h4 {
+    text-align: center;
+    padding: 10px;
+    color: #1ca9ff;
+}
+
+.list {
+    padding: 2px;
+}
+
+.listItem {
+    padding: 10px 0 10px 10px;
+    background-color: #efefef;
+    border-radius: 17px;
+    color: #525151;
+    font-size: 20px;
+    list-style: none;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.listItem:hover {
+    background-color: #1ca9ff;
+    color: #fff;
+}
+
+.helpTitle {
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+}
