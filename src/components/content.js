@@ -9,11 +9,13 @@ export default class Content extends Component {
 
     constructor(props) {
         super(props);
+        
+        const START_POSITION = 0;
         this.state = {
             questions: CoreGame.brainQuestions,
-            selectedQuestion: CoreGame.brainQuestions[0],
-            position: 0,
-            correctAnswer: CoreGame.brainQuestions[0].correct.position
+            selectedQuestion: CoreGame.brainQuestions[START_POSITION],
+            position: START_POSITION,
+            correctAnswer: CoreGame.brainQuestions[START_POSITION].correct.position
         };
     }
 

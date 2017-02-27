@@ -1,11 +1,14 @@
 import React from 'react';
+import GeneralConstant from '../constants/general_constant';
 
 const Button = (props) => {
 
     const getButtonMenu = () => {
         return (
             <div className="centerMenu">
-                <button className="btnStart" onClick={props.clickCallback}>Começar</button>
+                <button className="btnStart" onClick={props.clickCallback}>
+                    {GeneralConstant.button.START}
+                </button>
             </div>    
         );
     }
@@ -13,7 +16,9 @@ const Button = (props) => {
     const getButtonYes = () => {
         return (
             <div>
-                <button className="btnYes" onClick={props.clickCallback}>Sim</button>
+                <button className="btnYes" onClick={props.clickCallback}>
+                    {GeneralConstant.button.YES}
+                </button>
             </div>  
         );
     }
@@ -21,7 +26,9 @@ const Button = (props) => {
     const getButtonNo = () => {
         return (
             <div>
-                <button className="btnNo" onClick={props.clickCallback}>Não</button>
+                <button className="btnNo" onClick={props.clickCallback}>
+                    {GeneralConstant.button.NO}
+                </button>
             </div>  
         );
     }
