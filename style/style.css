@@ -27,6 +27,12 @@ body {
 /*
     BUTTONS
 */
+.btn {
+    display: inline-block;
+    width: 100%;
+    margin-top: 20px;
+}
+
 .btnStart, .btnYes, .btnNo {
     border-radius: 30px;
     background-color: #fff;
@@ -40,17 +46,23 @@ body {
     margin: 0 auto;
 }
 
-.btnYes, .btnNo {
+.btnYes, .btnNo, .btnQuit {
     float: left;
     padding: 10px 30px;
     font-size: 20px;
     color: #fff;
 }
 .btnYes {
-    background-color: green;
+    background-color: #99bd7f;
 }
 .btnNo {
-    background-color: red;
+    background-color: #ed145b;
+}
+.btnQuit {
+    width: 100%;
+    padding: 5px 30px;
+    border-radius: 10px;
+    background-color: #ed145b;
 }
 
 .centerMenu {
@@ -79,7 +91,8 @@ body {
     color: #31a7fd;
     text-align: center;
     word-spacing: 6px;
-    line-height: 30px;
+    line-height: 40px;
+    font-size: 2em;
 }
 
 .card.dialog {
@@ -89,6 +102,10 @@ body {
     top: 0;
     left: 50%;
     min-height: 200px;
+}
+
+.questionHelp .card.dialog {
+    left: -50%;
 }
 
 .card.dialog h4 {
@@ -121,4 +138,33 @@ body {
     text-align: center;
     padding: 10px;
     font-size: 20px;
+}
+
+.helpIcons {
+    display: inline-block;
+    text-align: center;
+    width: 33%;
+    cursor: pointer;
+}
+
+.helpIcons img {
+    margin: 10px 20px;
+}
+
+.helpIcons:hover {
+    background-color: #eaeaea;
+    border-radius: 5px;
+}
+
+.helpOptions {
+    background-color: #ccc;
+    border-radius: 5px;
+    height: 120px;
+    line-height: 120px;
+}
+
+.helpOptions p {
+    text-align: center;
+    font-size: 3em;
+    color: #fff;
 }

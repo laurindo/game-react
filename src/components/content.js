@@ -4,6 +4,7 @@ import QuestionList from './question-list';
 import QuestionHelp from './question-help';
 import CoreGame from '../core/brain';
 import Toolbar from './toolbar';
+import QuestionMoney from './question-money';
 
 export default class Content extends Component {
 
@@ -40,7 +41,11 @@ export default class Content extends Component {
                         position={this.state.position}
                         correctAnswer={this.state.correctAnswer}
                         questionData={this.state.selectedQuestion} />
-                    <QuestionHelp />
+                    <QuestionHelp
+                        questions={this.state.questions}
+                        correctAnswer={this.state.correctAnswer} 
+                        selectedQuestion={this.state.selectedQuestion} />
+                    <QuestionMoney />
                 </div>
             </div>
         );

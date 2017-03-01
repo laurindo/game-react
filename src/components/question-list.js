@@ -22,10 +22,12 @@ const QuestionList = (props) => {
     };
 
     return (
-        <div className="card col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <ul className="list">
-                {questionAnswers}
-            </ul>
+        <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div className="card">
+                <ul className="list">
+                    {questionAnswers}
+                </ul>
+            </div>
         </div>
     );
 };
