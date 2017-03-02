@@ -43,6 +43,32 @@ class Dialog extends Component {
         );
     };
 
+    getDeckSuggestion() {
+        let that = this;
+        let wrongOrCorrect = CoreBrain.wrongOrCorrect(this.props);
+        let itemsQuestion = ['a', 'b', 'c', 'd'];
+        let choices = [0,1,2,3].map(function(item, index) {
+            return (
+                <div key={index} className="col-xs-12 col-sm-3 col-md-3 col-xl-3 col-lg-3">
+                    <div>
+                        <img src="/images/deck-option.png" />
+                    </div>
+                </div>
+            );
+        });
+        let getAnswerFinal = () => {
+            return wrongOrCorrect.answerPercent + "% optaram pelo item (" + itemsQuestion[wrongOrCorrect.answerChosen] + ")";
+        };
+        return (
+            <div>
+                <div>
+                    <Button btnType="btnQuit" title={getAnswerFinal()} />
+                </div>
+                {choices}
+            </div>
+        );
+    };
+
     getContent() {
         switch (this.props.type) {
             case "board":
@@ -52,7 +78,7 @@ class Dialog extends Component {
                 break;
             case "deck":
                 return (
-                    <div>Deck</div>
+                    <div>{ this.getDeckSuggestion() }</div>
                 );
                 break;
             case "guess":

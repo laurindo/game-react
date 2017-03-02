@@ -50,6 +50,20 @@ let generateRandomNumbers = function(size, jumpLoop, position) {
     return track;
 }
 
+let wrongOrCorrect = (props) => {
+    let wrongOrCorrect = Math.floor(Math.random() * 2) + 1;
+    if (wrongOrCorrect === 0) { //WRONG
+        let wrong = Math.floor(Math.random() * 4+1) * 25;
+        return {
+            answerPercent: wrong, 
+            answerChosen: Math.floor(Math.random() * props.selectedQuestion.choice.length)
+        };
+    } else { //CORRECT
+        let correct = Math.floor(Math.random() * 4+1) * 25;
+        return {answerPercent: correct, answerChosen: props.correctAnswer};
+    }
+};
+
 let shuffleList = (array) => {
     let currentIndex = array.length;
     let temporaryValue;
@@ -83,5 +97,5 @@ let getQuestionsSorted = function() {
 
 var brainQuestions = getQuestionsSorted();
 
-export default {brainQuestions, shuffleList};
+export default {brainQuestions, shuffleList, wrongOrCorrect};
 
