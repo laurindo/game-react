@@ -5,11 +5,9 @@ const Button = (props) => {
 
     const getButtonMenu = () => {
         return (
-            <div className="centerMenu">
-                <button className="btnStart" onClick={props.clickCallback}>
-                    {GeneralConstant.button.START}
-                </button>
-            </div>    
+            <button className="btnStart" onClick={props.clickCallback}>
+                {GeneralConstant.button.START}
+            </button>
         );
     }
 
@@ -45,10 +43,10 @@ const Button = (props) => {
 
     return (
         <div>
-            <div className="centerMenu">
+            <div>
                 { props.btnType == 'btnStart' ?  getButtonMenu() : '' }
             </div>
-            <div className="centerButton">
+            <div className="centerButton centerPromptButtons">
                 { props.btnType == 'btnYes' ? getButtonYes() : '' }
                 { props.btnType == 'btnNo' ? getButtonNo() : '' }
             </div>

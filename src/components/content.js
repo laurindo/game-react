@@ -16,7 +16,8 @@ export default class Content extends Component {
             questions: CoreGame.brainQuestions,
             selectedQuestion: CoreGame.brainQuestions[START_POSITION],
             position: START_POSITION,
-            correctAnswer: CoreGame.brainQuestions[START_POSITION].correct.position
+            correctAnswer: CoreGame.brainQuestions[START_POSITION].correct.position,
+            questionsDisabled: null
         };
     }
 
@@ -24,8 +25,17 @@ export default class Content extends Component {
         this.setState({
             selectedQuestion: selectedQuestion, 
             position: pos,
-            correctAnswer: selectedQuestion.correct.position
+            correctAnswer: selectedQuestion.correct.position,
+            questionsDisabled: null
         });
+    }
+
+    onItemSelectHelp(type) {
+
+    }
+
+    onDisableQuestions(optChosen) {
+        this.setState({questionsDisabled: optChosen});
     }
 
     render() {
@@ -40,11 +50,14 @@ export default class Content extends Component {
                         questions={this.state.questions}
                         position={this.state.position}
                         correctAnswer={this.state.correctAnswer}
-                        questionData={this.state.selectedQuestion} />
+                        questionData={this.state.selectedQuestion}
+                        questionsDisabled={this.state.questionsDisabled} />
                     <QuestionHelp
+                        onItemSelectHelp={ (type) => this.onItemSelectHelp(type) } 
                         questions={this.state.questions}
                         correctAnswer={this.state.correctAnswer} 
-                        selectedQuestion={this.state.selectedQuestion} />
+                        selectedQuestion={this.state.selectedQuestion}
+                        onDisableQuestions={ (optChosen) => this.onDisableQuestions(optChosen) } />
                     <QuestionMoney />
                 </div>
             </div>

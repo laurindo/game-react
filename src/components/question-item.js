@@ -19,6 +19,7 @@ class QuestionItem extends Component {
         this.setState({showPromptDialog: true, message: ConstantGeneral.DO_YOU_HAVE_SURE_THE_ANSWER});
     }
     incrementPos(event) {
+        //this.props.questionsDisabled = null;
         let answerClicked = parseInt(event.target.getAttribute('target'), 10);
         let correctAnswer = this.props.correctAnswer;
         let isAnswerOk = this.checkAnswer(answerClicked, correctAnswer);
@@ -51,16 +52,26 @@ class QuestionItem extends Component {
                 message={this.state.message} />
         );
     }
+    renderList() {
+        return (
+            <li onClick={ (event) => this.incrementPos(event) } 
+                target={this.props.target}
+                className="listItem">
+                    {this.props.item}
+            </li>
+        );
+    }
+    renderListDisabled() {
+        return (
+            <li className="listItemDisabled">{this.props.item}</li>
+        );
+    }
     render() {
         return (
             <div>
                 {this.state.showPromptDialog ? this.renderDialogPrompt() : ''}
                 {this.state.showDialog ? this.renderDialogNormal() : ''}
-                <li onClick={ (event) => this.incrementPos(event) } 
-                    target={this.props.target}
-                    className="listItem">
-                        {this.props.item}
-                </li>
+                {(this.props.disabled) ? this.renderListDisabled() : this.renderList() }
             </div>    
         );
     }

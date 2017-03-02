@@ -15,7 +15,7 @@ body {
 
 .menuStart {
     background-color: #31a7fd;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -53,11 +53,18 @@ body {
     color: #fff;
 }
 .btnYes {
+    float: none;
     background-color: #99bd7f;
 }
 .btnNo {
+    float: none;
     background-color: #ed145b;
 }
+
+.btnStart {
+    margin-top: 25%;
+}
+
 .btnQuit {
     width: 100%;
     padding: 5px 30px;
@@ -75,6 +82,13 @@ body {
 .centerButton {
     width: 100%;
     text-align: center;
+}
+
+.centerPromptButtons {
+    float: left;
+    text-align: center;
+    width: 50%;
+    margin-top: 35px;
 }
 
 .content {
@@ -118,7 +132,7 @@ body {
     padding: 2px;
 }
 
-.listItem {
+.listItem, .listItemDisabled {
     padding: 10px 0 10px 10px;
     background-color: #efefef;
     border-radius: 17px;
@@ -127,6 +141,11 @@ body {
     list-style: none;
     margin: 10px;
     cursor: pointer;
+}
+
+.listItemDisabled {
+    text-decoration: line-through;
+    cursor: normal;
 }
 
 .listItem:hover {
@@ -156,11 +175,24 @@ body {
     border-radius: 5px;
 }
 
+.helpIcons.disabled {
+    color: #ed145b;
+}
+
+.helpIcons.disabled:hover {
+    background-color: transparent;
+}
+
 .helpOptions {
     background-color: #ccc;
     border-radius: 5px;
     height: 120px;
     line-height: 120px;
+    cursor: pointer;
+}
+
+.helpOptions:hover {
+    background-color: #1ca9ff;
 }
 
 .helpOptions p {

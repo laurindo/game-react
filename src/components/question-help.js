@@ -11,40 +11,84 @@ class QuestionHelp extends Component {
         this.state = {
             showDialog: false,
             helpType: '',
-            message: ''
+            message: '',
+            boardEnable: true,
+            deckEnable: true,
+            guessEnable: true
         };
     }
 
     getHelp(type) {
         switch (type) {
             case "board":
-                this.setState({helpType: type, message: 'Placas', showDialog: true});
+                this.setState({helpType: type, message: 'Placas', showDialog: true, boardEnable: false});
                 break;
             case "deck":
-                this.setState({helpType: type, message: 'Cartas', showDialog: true});
+                this.setState({helpType: type, message: 'Cartas', showDialog: true, deckEnable: false});
                 break;
             case "guess":
-                this.setState({helpType: type, message: 'Convidados', showDialog: true});
+                this.setState({helpType: type, message: 'Convidados', showDialog: true, guessEnable: false});
                 break;
         }
     };
 
-    iconsHelp() {
+    renderIcon(icon, index) {
         let that = this;
-        let icons = GeneralConstant.icons.map(function(icon, index) {
+        let renderNormalIcon = () => {
             return (
                 <div key={index} className="helpIcons" onClick={ (type) => that.getHelp(icon.type) }>
                     <img src={"/images/" + icon.img} />
                     {icon.title}
                 </div>
-            );        
+            );
+        };
+        let renderIconDisabled = () => {
+            return (
+                <div key={index} className="helpIcons disabled">
+                    <img src="/images/disabled.png" width="50" />
+                    {icon.title}
+                </div>
+            );
+        };
+        if (icon.type === 'board') {
+            if (this.state.boardEnable) {
+                return renderNormalIcon();
+            } else {
+                return renderIconDisabled();
+            }
+        }
+
+        if (icon.type === 'deck') {
+            if (this.state.deckEnable) {
+                return renderNormalIcon();
+            } else {
+                return renderIconDisabled();
+            }
+        }
+        
+        if (icon.type === 'guess') {
+            if (this.state.guessEnable) {
+                return renderNormalIcon();
+            } else {
+                return renderIconDisabled();
+            }
+        }
+        
+    }
+
+    iconsHelp() {
+        let that = this;
+        let icons = GeneralConstant.icons.map(function(icon, index) {
+            return (
+                that.renderIcon(icon, index)
+            );
         });
         return icons;
     }
 
     closeDialog(opt) {
         this.setState({showDialog: false});
-        alert(opt);
+        this.props.onDisableQuestions(opt);
     }
 
     render() {

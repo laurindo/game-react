@@ -13,8 +13,8 @@ class Dialog extends Component {
     getButtons() {
         return (
             <div>
-                <Button btnType="btnYes" clickCallback={props.callbackYes} /> 
-                <Button btnType="btnNo" clickCallback={props.callbackNo} />
+                <Button btnType="btnYes" clickCallback={this.props.callbackYes} /> 
+                <Button btnType="btnNo" clickCallback={this.props.callbackNo} />
             </div>
         );
     }
@@ -31,7 +31,7 @@ class Dialog extends Component {
         let shuffleChoices = CoreBrain.shuffleList(optionsToDisable);
         let choices = shuffleChoices.map(function(item, index) {
             return (
-                <div key={index} className="col-xs-12 col-sm-3 col-md-3 col-xl-3 col-lg-3">
+                <div key={index} className="col-xs-12 col-sm-4 col-md-4 col-xl-4 col-lg-4">
                     <div className="helpOptions" target={item} onClick={ (event) => that.choiceBoard(event) }>
                         <p>?</p>
                     </div>
