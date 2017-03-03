@@ -88,7 +88,9 @@ class QuestionHelp extends Component {
 
     closeDialog(opt) {
         this.setState({showDialog: false});
-        this.props.onDisableQuestions(opt);
+        if (opt) {
+            this.props.onDisableQuestions(opt);
+        }
     }
 
     render() {

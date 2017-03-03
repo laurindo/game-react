@@ -25,6 +25,10 @@ class Dialog extends Component {
         this.props.callback(opt);
     }
 
+    closeDialog() {
+        this.props.callback();
+    }
+
     getBoardSuggestion() {
         let that = this;
         let optionsToDisable = [1,2,3]; //options that deck will disable
@@ -65,6 +69,9 @@ class Dialog extends Component {
                     <Button btnType="btnQuit" title={getAnswerFinal()} />
                 </div>
                 {choices}
+                <div>
+                    <Button btnType="btn" title="OK" clickCallback={ () => that.closeDialog() } />
+                </div>
             </div>
         );
     };

@@ -46,7 +46,7 @@ body {
     margin: 0 auto;
 }
 
-.btnYes, .btnNo, .btnQuit {
+.btnYes, .btnNo, .btnQuit, .btnNormal {
     float: left;
     padding: 10px 30px;
     font-size: 20px;
@@ -60,16 +60,21 @@ body {
     float: none;
     background-color: #ed145b;
 }
-
 .btnStart {
     margin-top: 25%;
 }
 
-.btnQuit {
+.btnQuit, .btnNormal {
     width: 100%;
     padding: 5px 30px;
     border-radius: 10px;
     background-color: #ed145b;
+}
+
+.btnNormal {
+    margin-top: 0;
+    background-color: #99bd7f;
+    cursor: pointer;
 }
 
 .centerMenu {

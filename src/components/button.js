@@ -31,10 +31,20 @@ const Button = (props) => {
         );
     }
 
-    const getButtonNormal = () => {
+    const getButtonQuit = () => {
         return (
             <div className="btn">
                 <button className="btnQuit" onClick={props.clickCallback}>
+                    {props.title}
+                </button>
+            </div>  
+        );
+    }
+
+    const getButtonNormal = () => {
+        return (
+            <div className="btn">
+                <button className="btnNormal" onClick={props.clickCallback}>
                     {props.title}
                 </button>
             </div>  
@@ -51,7 +61,10 @@ const Button = (props) => {
                 { props.btnType == 'btnNo' ? getButtonNo() : '' }
             </div>
             <div>
-                { props.btnType == 'btnQuit' ? getButtonNormal() : '' }
+                { props.btnType == 'btnQuit' ? getButtonQuit() : '' }
+            </div>
+            <div>
+                { props.btnType == 'btn' ? getButtonNormal() : '' }
             </div>
         </div>
     );
