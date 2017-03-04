@@ -4,9 +4,11 @@
 */
 
 import DataQuestions from '../model/data-questions';
+import Careers from '../model/career';
 
 const QUESTIONS = DataQuestions.QUIZZ_OBJ;
 const SIZE_QUIZZ_OBJ = DataQuestions.QUIZZ_OBJ.length;
+const CAREERS = Careers.getCareers();
 let track = [];
 
 /*
@@ -64,6 +66,11 @@ let wrongOrCorrect = (props) => {
     }
 };
 
+let getGuessProfessionalCareer = () => {
+    let rand = Math.floor(Math.random() * CAREERS.length - 1);
+    return CAREERS[rand];
+};
+
 let shuffleList = (array) => {
     let currentIndex = array.length;
     let temporaryValue;
@@ -97,5 +104,5 @@ let getQuestionsSorted = function() {
 
 var brainQuestions = getQuestionsSorted();
 
-export default {brainQuestions, shuffleList, wrongOrCorrect};
+export default {brainQuestions, shuffleList, wrongOrCorrect, getGuessProfessionalCareer};
 

@@ -76,6 +76,34 @@ class Dialog extends Component {
         );
     };
 
+    getGuessSuggestion() {
+        let that = this;
+        let wrongOrCorrect = CoreBrain.wrongOrCorrect(this.props);
+        let careers = CoreBrain.getGuessProfessionalCareer();
+        let itemsQuestion = ['a', 'b', 'c', 'd'];
+        let getAnswerFinal = () => {
+            return `${itemsQuestion[wrongOrCorrect.answerChosen]}`;
+        };
+        return (
+            <div>
+                <div className="col-xs-12">
+                    <div className="col-sm-3 col-md-3 col-xl-3 col-lg-3">
+                        <img src="/images/deck-option.png" />
+                    </div>
+                    <div className="col-sm-12 col-md-9 col-xl-9 col-lg-9">
+                        <p className="descriptionGuess">{`O(a) ${careers} afirma que a resposta correta é: `}</p>
+                        <label className="answerLabelGuess">
+                            ({getAnswerFinal()})
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <Button btnType="btn" title="OK" clickCallback={ () => that.closeDialog() } />
+                </div>
+            </div>
+        );    
+    };
+
     getContent() {
         switch (this.props.type) {
             case "board":
@@ -90,7 +118,7 @@ class Dialog extends Component {
                 break;
             case "guess":
                 return (
-                    <div>Guess</div>
+                    <div>{ this.getGuessSuggestion() }</div>
                 );
                 break;
         }    
