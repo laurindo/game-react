@@ -14,7 +14,10 @@ class QuestionHelp extends Component {
             message: '',
             boardEnable: true,
             deckEnable: true,
-            guessEnable: true
+            guessEnable: true,
+            showDialogQuit: false,
+            showDialogExitedGame: false,
+            showScore: false
         };
     }
 
@@ -87,22 +90,38 @@ class QuestionHelp extends Component {
     }
 
     closeDialog(opt) {
-        this.setState({showDialog: false});
+        this.setState({showDialog: false, showDialogQuit: false});
         if (opt) {
             this.props.onDisableQuestions(opt);
         }
     }
 
+    closeDialogQuitGame() {
+        let that = this;
+        this.closeDialog();
+        this.setState({showDialogExitedGame: true});
+        setTimeout(function() {
+            that.setState({showDialogExitedGame: false, showScore: true});
+        }, 3000);
+    }
+
+    askedExit() {
+        this.setState({showDialogQuit: true});
+    }
+
     render() {
         return (
             <div className="questionHelp col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                { (this.state.showScore) ? <Dialog type="score" message={GeneralConstant.SCORE} /> : '' }
+                { (this.state.showDialogExitedGame) ? <Dialog type="lose" message={GeneralConstant.YOU_LOSE} /> : '' }
+                { (this.state.showDialogQuit) ? <Dialog type="prompt" message={GeneralConstant.WANT_TO_QUIT} callbackYes={() => { this.closeDialogQuitGame()}} callbackNo={() => { this.closeDialog()}} /> : '' }
                 { (this.state.showDialog) ? <Dialog message={this.state.message} type={this.state.helpType} callback={(opt) => { this.closeDialog(opt)}} questions={this.props.questions} correctAnswer={this.props.correctAnswer} selectedQuestion={this.props.selectedQuestion} /> : '' }
                 <div className="card">
                     <h6 className="helpTitle">
                         {GeneralConstant.HELP}
                     </h6>
                     <div>{ this.iconsHelp() }</div>
-                    <Button title={GeneralConstant.QUIT} btnType="btnQuit" />
+                    <Button title={GeneralConstant.QUIT} btnType="btnQuit" clickCallback={ () => {this.askedExit()} } />
                 </div>
             </div>
         );

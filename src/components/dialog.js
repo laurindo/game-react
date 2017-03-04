@@ -104,6 +104,14 @@ class Dialog extends Component {
         );    
     };
 
+    getLoseContent() {
+        return (
+            <div>
+                <Button btnType="btn" title="Reiniciar" clickCallback={ () => location.reload() } />
+            </div>
+        );
+    };
+
     getContent() {
         switch (this.props.type) {
             case "board":
@@ -124,12 +132,39 @@ class Dialog extends Component {
         }    
     };
 
+    getContentLose() {
+        return (
+            <div className="loadingRanking">carregando ranking...</div>    
+        );
+    }
+
+    getContentScore() {
+        let that = this;
+        return (
+            <div className="col-xs-12">
+                <ol>
+                    <li className="rankingList">dffs</li>
+                    <li className="rankingList">dffs</li>
+                    <li className="rankingList">dffs</li>
+                    <li className="rankingList">dffs</li>
+                    <li className="rankingList">dffs</li>
+                </ol>
+                {that.getLoseContent()}
+            </div>
+        );
+    };
+
     render() {
         return (
-            <div className="card dialog">
-                <h4>{this.props.message}</h4>
-                <div>{ (this.props.type) ? this.getContent() : '' }</div>
-                <div>{this.props.type === 'prompt' ? this.getButtons() : ''}</div>
+            <div>
+                <div className="dropscreen"></div>
+                <div className="card dialog">
+                    <h4>{this.props.message}</h4>
+                    <div>{ (this.props.type && this.props.type !== 'lose') ? this.getContent() : '' }</div>
+                    <div>{ (this.props.type && this.props.type === 'lose') ? this.getContentLose() : '' }</div>
+                    <div>{ (this.props.type && this.props.type === 'score') ? this.getContentScore() : '' }</div>
+                    <div>{this.props.type === 'prompt' ? this.getButtons() : ''}</div>
+                </div>
             </div>
         );
     };

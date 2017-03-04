@@ -118,7 +118,7 @@ body {
     width: 500px;
     position: absolute;
     z-index: 4;
-    top: 0;
+    top: -70px;
     left: 50%;
     min-height: 200px;
 }
@@ -220,4 +220,28 @@ body {
     width: 100%;
     color: #14aee1;
     margin-top: 10px;
+}
+
+.dropscreen {
+    width: 500%;
+    position: fixed;
+    height: 500%;
+    background-color: #000;
+    opacity: 0.7;
+    left: -200%;
+    top: -100%;
+    z-index: 4;
+}
+
+.rankingList {
+    padding: 10px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.loadingRanking {
+    text-align: center;
+    margin-top: 20px;
 }
