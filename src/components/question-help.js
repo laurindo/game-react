@@ -40,7 +40,7 @@ class QuestionHelp extends Component {
         let renderNormalIcon = () => {
             return (
                 <div key={index} className="helpIcons" onClick={ (type) => that.getHelp(icon.type) }>
-                    <img src={"/images/" + icon.img} />
+                    <img src={"images/" + icon.img} />
                     {icon.title}
                 </div>
             );
