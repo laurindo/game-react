@@ -48,7 +48,7 @@ class QuestionHelp extends Component {
         let renderIconDisabled = () => {
             return (
                 <div key={index} className="helpIcons disabled">
-                    <img src="/images/disabled.png" width="50" />
+                    <img src="images/disabled.png" width="50" />
                     {icon.title}
                 </div>
             );
