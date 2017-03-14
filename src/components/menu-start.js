@@ -21,7 +21,7 @@ export default class MenuStart extends Component {
         return (
             <div className="startPage">
                 <div className="menuStart">
-                    <img src="/images/logo.png" />
+                    <img src="images/logo.png" />
                     <Button title={GeneralConstant.button.START} 
                         btnType="btnStart" 
                         clickCallback={this.props.showMenuStart} />
