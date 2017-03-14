@@ -19876,7 +19876,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'menuStart' },
-	                    _react2.default.createElement('img', { src: '/images/logo.png' }),
+	                    _react2.default.createElement('img', { src: 'images/logo.png' }),
 	                    _react2.default.createElement(_button2.default, { title: _general_constant2.default.button.START,
 	                        btnType: 'btnStart',
 	                        clickCallback: this.props.showMenuStart })
@@ -20156,7 +20156,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        null,
-	                        _react2.default.createElement('img', { src: '/images/deck-option.png' })
+	                        _react2.default.createElement('img', { src: 'images/deck-option.png' })
 	                    )
 	                );
 	            });
@@ -20200,7 +20200,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'col-sm-3 col-md-3 col-xl-3 col-lg-3' },
-	                        _react2.default.createElement('img', { src: '/images/deck-option.png' })
+	                        _react2.default.createElement('img', { src: 'images/deck-option.png' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -21103,7 +21103,7 @@
 	                return _react2.default.createElement(
 	                    'div',
 	                    { key: index, className: 'helpIcons disabled' },
-	                    _react2.default.createElement('img', { src: '/images/disabled.png', width: '50' }),
+	                    _react2.default.createElement('img', { src: 'images/disabled.png', width: '50' }),
 	                    icon.title
 	                );
 	            };
