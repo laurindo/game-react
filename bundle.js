@@ -21095,7 +21095,7 @@
 	                    { key: index, className: 'helpIcons', onClick: function onClick(type) {
 	                            return that.getHelp(icon.type);
 	                        } },
-	                    _react2.default.createElement('img', { src: "/images/" + icon.img }),
+	                    _react2.default.createElement('img', { src: "images/" + icon.img }),
 	                    icon.title
 	                );
 	            };
