@@ -5,6 +5,7 @@ import QuestionHelp from './question-help';
 import CoreGame from '../core/brain';
 import Toolbar from './toolbar';
 import QuestionMoney from './question-money';
+import ProgressBar from './progress-bar';
 
 export default class Content extends Component {
 
@@ -17,22 +18,24 @@ export default class Content extends Component {
             selectedQuestion: CoreGame.brainQuestions[START_POSITION],
             position: START_POSITION,
             correctAnswer: CoreGame.brainQuestions[START_POSITION].correct.position,
-            questionsDisabled: null
+            questionsDisabled: null,
+            valueSuccess: 0,
+            valueError: 0
         };
     }
 
-    onInputChange (selectedQuestion, pos) {
+    onInputChange (selectedQuestion, pos, valueSuccess, valueError) {
         this.setState({
             selectedQuestion: selectedQuestion, 
             position: pos,
             correctAnswer: selectedQuestion.correct.position,
-            questionsDisabled: null
+            questionsDisabled: null,
+            valueSuccess: valueSuccess,
+            valueError: valueError
         });
     }
 
-    onItemSelectHelp(type) {
-
-    }
+    onItemSelectHelp(type) {}
 
     onDisableQuestions(optChosen) {
         this.setState({questionsDisabled: optChosen});
@@ -44,13 +47,16 @@ export default class Content extends Component {
             <div>
                 <Toolbar />
                 <div className="content">
-                    <QuestionTitle questionData={this.state.selectedQuestion} nextQuestion={this.nextQuestion} />
+                    <QuestionTitle position={this.state.position} questionData={this.state.selectedQuestion} nextQuestion={this.nextQuestion} />
+                    <ProgressBar valueSuccess={this.state.valueSuccess} valueError={this.state.valueError} />
                     <QuestionList 
-                        onItemSelect={ (selectedQuestion, pos) => this.onInputChange(selectedQuestion, pos) } 
+                        onItemSelect={ (selectedQuestion, pos, valueSuccess, valueError) => this.onInputChange(selectedQuestion, pos, valueSuccess, valueError) } 
                         questions={this.state.questions}
                         position={this.state.position}
                         correctAnswer={this.state.correctAnswer}
                         questionData={this.state.selectedQuestion}
+                        valueSuccess={this.state.valueSuccess}
+                        valueError={this.state.valueError}
                         questionsDisabled={this.state.questionsDisabled} />
                     <QuestionHelp
                         onItemSelectHelp={ (type) => this.onItemSelectHelp(type) } 

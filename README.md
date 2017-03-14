@@ -4,15 +4,21 @@
 
 ### Project is a webpack + react
 
+* Demo
+** https://laurindo.github.io/game-react/ **
+
 * Install
 ``
-    npm install
-
+npm install
 ``
 
 * Run
 ``
-    npm start
+npm start
+``
 
+* Testing on browser
+``
+htpp://localhost:8080
 ``
 

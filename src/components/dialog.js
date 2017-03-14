@@ -107,7 +107,7 @@ class Dialog extends Component {
     getLoseContent() {
         return (
             <div>
-                <Button btnType="btn" title="Reiniciar" clickCallback={ () => location.reload() } />
+                <Button btnType="btn" title="carregando próxima pergunta..." />
             </div>
         );
     };
@@ -160,6 +160,8 @@ class Dialog extends Component {
                 <div className="dropscreen"></div>
                 <div className="card dialog">
                     <h4>{this.props.message}</h4>
+                    {this.props.showMsgTryAgain ? '' : ''}
+                    {this.props.showMsgTryAgain ? this.getLoseContent() : ''}
                     <div>{ (this.props.type && this.props.type !== 'lose') ? this.getContent() : '' }</div>
                     <div>{ (this.props.type && this.props.type === 'lose') ? this.getContentLose() : '' }</div>
                     <div>{ (this.props.type && this.props.type === 'score') ? this.getContentScore() : '' }</div>

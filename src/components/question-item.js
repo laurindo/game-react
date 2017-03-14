@@ -9,7 +9,8 @@ class QuestionItem extends Component {
             showPromptDialog: false,
             showDialog: false,
             message: '',
-            isAnswerOk: false
+            isAnswerOk: false,
+            showAnswerCorrect: false
         };
     }
     checkAnswer (answerClicked, correctAnswer) {
@@ -28,20 +29,30 @@ class QuestionItem extends Component {
     }
     callbackYes() {
         let newPos = this.props.position + 1;
-        this.props.onItemSelect(this.props.questions[newPos], newPos);
+        let valueSuccess = this.state.isAnswerOk ? this.props.valueSuccess + 1 : this.props.valueSuccess;
+        let valueError = !this.state.isAnswerOk ? this.props.valueError + 1 : this.props.valueError;
+        this.props.onItemSelect(this.props.questions[newPos], newPos, valueSuccess, valueError);
     }
     callbackNo() {
         this.setState({showPromptDialog: false});
     }
     callbackGameOver() {
-        this.setState({showDialog: true, message: ConstantGeneral.YOU_LOSE});
+        let that = this;
+        let position = this.props.position;
+        let item = this.props.questions[position];
+        let options = ['a', 'b', 'c', 'd'];
+        let message = `A resposta correta é o item(${options[item.correct.position]}) - ${item.correct.desc}.`;
+        that.setState({showDialog: true, message: message});
+        setTimeout(function() {
+            that.callbackYes();
+        }, 2000);
     }
     processAnswer() {
-        this.state.isAnswerOk ? this.callbackYes() : this.callbackGameOver()
+        this.state.isAnswerOk ? this.callbackYes() : this.callbackGameOver();
     }
-    renderDialogNormal() {
+    renderDialogNormal(isTryAgain) {
         return (
-            <Dialog type={ConstantGeneral.dialog.NORMAL} message={this.state.message} />
+            <Dialog type={ConstantGeneral.dialog.NORMAL} showMsgTryAgain={isTryAgain} message={this.state.message} />
         );
     }
     renderDialogPrompt() {
@@ -70,7 +81,7 @@ class QuestionItem extends Component {
         return (
             <div>
                 {this.state.showPromptDialog ? this.renderDialogPrompt() : ''}
-                {this.state.showDialog ? this.renderDialogNormal() : ''}
+                {this.state.showDialog ? this.renderDialogNormal(true) : ''}
                 {(this.props.disabled) ? this.renderListDisabled() : this.renderList() }
             </div>    
         );
