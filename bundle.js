@@ -67,7 +67,7 @@
 
 	var _menuStart2 = _interopRequireDefault(_menuStart);
 
-	var _content = __webpack_require__(163);
+	var _content = __webpack_require__(167);
 
 	var _content2 = _interopRequireDefault(_content);
 
@@ -19818,6 +19818,8 @@
 	    value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -19830,19 +19832,69 @@
 
 	var _general_constant2 = _interopRequireDefault(_general_constant);
 
+	var _dialog = __webpack_require__(163);
+
+	var _dialog2 = _interopRequireDefault(_dialog);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var MenuStart = function MenuStart(props) {
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	    return _react2.default.createElement(
-	        'div',
-	        { className: 'menuStart' },
-	        _react2.default.createElement('img', { src: '' }),
-	        _react2.default.createElement(_button2.default, { title: _general_constant2.default.button.START,
-	            btnType: 'btnStart',
-	            clickCallback: props.showMenuStart })
-	    );
-	};
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var MenuStart = function (_Component) {
+	    _inherits(MenuStart, _Component);
+
+	    function MenuStart(props) {
+	        _classCallCheck(this, MenuStart);
+
+	        var _this = _possibleConstructorReturn(this, (MenuStart.__proto__ || Object.getPrototypeOf(MenuStart)).call(this));
+
+	        _this.state = {
+	            aboutGame: false
+	        };
+	        return _this;
+	    }
+
+	    _createClass(MenuStart, [{
+	        key: 'showDialog',
+	        value: function showDialog() {
+	            this.setState({
+	                aboutGame: true
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'startPage' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'menuStart' },
+	                    _react2.default.createElement('img', { src: '/images/logo.png' }),
+	                    _react2.default.createElement(_button2.default, { title: _general_constant2.default.button.START,
+	                        btnType: 'btnStart',
+	                        clickCallback: this.props.showMenuStart })
+	                ),
+	                _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick() {
+	                            _this2.showDialog();
+	                        }, href: '#' },
+	                    'Sobre o game'
+	                ),
+	                this.state.aboutGame ? _react2.default.createElement(_dialog2.default, { type: 'normal', message: _general_constant2.default.ABOUT_GAME }) : ''
+	            );
+	        }
+	    }]);
+
+	    return MenuStart;
+	}(_react.Component);
 
 	exports.default = MenuStart;
 
@@ -19964,11 +20016,12 @@
 	});
 	exports.default = {
 	    DO_YOU_HAVE_SURE_THE_ANSWER: 'Você tem certeza da resposta?',
-	    YOU_LOSE: 'VOCÊ PERDEU!!!!',
+	    YOU_LOSE: 'Tente outra vez.',
 	    SCORE: 'Ranking',
 	    HELP: 'Ajuda',
 	    QUIT: 'Desistir',
 	    WANT_TO_QUIT: 'Deseja desistir?',
+	    ABOUT_GAME: 'Jogando Limpo é um jogo de perguntas e respostas.',
 	    dialog: {
 	        PROMPT: 'prompt',
 	        NORMAL: 'normal'
@@ -20009,417 +20062,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _questionTitle = __webpack_require__(164);
-
-	var _questionTitle2 = _interopRequireDefault(_questionTitle);
-
-	var _questionList = __webpack_require__(165);
-
-	var _questionList2 = _interopRequireDefault(_questionList);
-
-	var _questionHelp = __webpack_require__(171);
-
-	var _questionHelp2 = _interopRequireDefault(_questionHelp);
-
-	var _brain = __webpack_require__(168);
-
-	var _brain2 = _interopRequireDefault(_brain);
-
-	var _toolbar = __webpack_require__(172);
-
-	var _toolbar2 = _interopRequireDefault(_toolbar);
-
-	var _questionMoney = __webpack_require__(173);
-
-	var _questionMoney2 = _interopRequireDefault(_questionMoney);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Content = function (_Component) {
-	    _inherits(Content, _Component);
-
-	    function Content(props) {
-	        _classCallCheck(this, Content);
-
-	        var _this = _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
-
-	        var START_POSITION = 0;
-	        _this.state = {
-	            questions: _brain2.default.brainQuestions,
-	            selectedQuestion: _brain2.default.brainQuestions[START_POSITION],
-	            position: START_POSITION,
-	            correctAnswer: _brain2.default.brainQuestions[START_POSITION].correct.position,
-	            questionsDisabled: null
-	        };
-	        return _this;
-	    }
-
-	    _createClass(Content, [{
-	        key: 'onInputChange',
-	        value: function onInputChange(selectedQuestion, pos) {
-	            this.setState({
-	                selectedQuestion: selectedQuestion,
-	                position: pos,
-	                correctAnswer: selectedQuestion.correct.position,
-	                questionsDisabled: null
-	            });
-	        }
-	    }, {
-	        key: 'onItemSelectHelp',
-	        value: function onItemSelectHelp(type) {}
-	    }, {
-	        key: 'onDisableQuestions',
-	        value: function onDisableQuestions(optChosen) {
-	            this.setState({ questionsDisabled: optChosen });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(_toolbar2.default, null),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'content' },
-	                    _react2.default.createElement(_questionTitle2.default, { questionData: this.state.selectedQuestion, nextQuestion: this.nextQuestion }),
-	                    _react2.default.createElement(_questionList2.default, {
-	                        onItemSelect: function onItemSelect(selectedQuestion, pos) {
-	                            return _this2.onInputChange(selectedQuestion, pos);
-	                        },
-	                        questions: this.state.questions,
-	                        position: this.state.position,
-	                        correctAnswer: this.state.correctAnswer,
-	                        questionData: this.state.selectedQuestion,
-	                        questionsDisabled: this.state.questionsDisabled }),
-	                    _react2.default.createElement(_questionHelp2.default, {
-	                        onItemSelectHelp: function onItemSelectHelp(type) {
-	                            return _this2.onItemSelectHelp(type);
-	                        },
-	                        questions: this.state.questions,
-	                        correctAnswer: this.state.correctAnswer,
-	                        selectedQuestion: this.state.selectedQuestion,
-	                        onDisableQuestions: function onDisableQuestions(optChosen) {
-	                            return _this2.onDisableQuestions(optChosen);
-	                        } }),
-	                    _react2.default.createElement(_questionMoney2.default, null)
-	                )
-	            );
-	        }
-	    }]);
-
-	    return Content;
-	}(_react.Component);
-
-	exports.default = Content;
-
-/***/ },
-/* 164 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var QuestionTitle = function QuestionTitle(_ref) {
-	    var questionData = _ref.questionData;
-
-
-	    return _react2.default.createElement(
-	        "div",
-	        { className: "col-xs-12 col-md-12 col-sm-12 col-lg-12" },
-	        _react2.default.createElement(
-	            "div",
-	            { className: "card" },
-	            _react2.default.createElement(
-	                "h5",
-	                null,
-	                questionData.question
-	            )
-	        )
-	    );
-	};
-
-	exports.default = QuestionTitle;
-
-/***/ },
-/* 165 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _questionItem = __webpack_require__(166);
-
-	var _questionItem2 = _interopRequireDefault(_questionItem);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var QuestionList = function QuestionList(props) {
-
-	    var countQuestionDisabled = 0;
-
-	    var renderQuestion = function renderQuestion(item, index) {
-	        return _react2.default.createElement(_questionItem2.default, {
-	            onItemSelect: props.onItemSelect,
-	            questions: props.questions,
-	            position: props.position,
-	            correctAnswer: props.correctAnswer,
-	            questionsDisabled: props.questionsDisabled,
-	            key: item,
-	            target: index,
-	            item: item });
-	    };
-
-	    var renderQuestionDisabled = function renderQuestionDisabled(questionsDisabled, item, index) {
-	        questionsDisabled = parseInt(props.questionsDisabled, 10);
-	        if (countQuestionDisabled < questionsDisabled && index !== props.correctAnswer) {
-	            countQuestionDisabled++;
-	            return _react2.default.createElement(_questionItem2.default, {
-	                disabled: true,
-	                onItemSelect: props.onItemSelect,
-	                questions: props.questions,
-	                position: props.position,
-	                correctAnswer: props.correctAnswer,
-	                questionsDisabled: props.questionsDisabled,
-	                key: item,
-	                target: index,
-	                item: item });
-	        } else {
-	            return _react2.default.createElement(_questionItem2.default, {
-	                disabled: index === props.correctAnswer || countQuestionDisabled === questionsDisabled ? false : true,
-	                onItemSelect: props.onItemSelect,
-	                questions: props.questions,
-	                position: props.position,
-	                correctAnswer: props.correctAnswer,
-	                questionsDisabled: props.questionsDisabled,
-	                key: item,
-	                target: index,
-	                item: item });
-	        }
-	    };
-
-	    var questionAnswers = props.questionData.choice.map(function (item, index) {
-	        return !props.questionsDisabled ? renderQuestion(item, index) : renderQuestionDisabled(props.questionsDisabled, item, index);
-	    });
-
-	    /*const incrementPos = () => {
-	        let newPos = props.position + 1;
-	        props.onItemSelect(props.questions[newPos], newPos);
-	    };*/
-
-	    return _react2.default.createElement(
-	        'div',
-	        { className: 'col-xs-12 col-sm-12 col-md-6 col-lg-6' },
-	        _react2.default.createElement(
-	            'div',
-	            { className: 'card' },
-	            _react2.default.createElement(
-	                'ul',
-	                { className: 'list' },
-	                questionAnswers
-	            )
-	        )
-	    );
-	};
-
-	exports.default = QuestionList;
-
-/***/ },
-/* 166 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _dialog = __webpack_require__(167);
-
-	var _dialog2 = _interopRequireDefault(_dialog);
-
-	var _general_constant = __webpack_require__(162);
-
-	var _general_constant2 = _interopRequireDefault(_general_constant);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var QuestionItem = function (_Component) {
-	    _inherits(QuestionItem, _Component);
-
-	    function QuestionItem(props) {
-	        _classCallCheck(this, QuestionItem);
-
-	        var _this = _possibleConstructorReturn(this, (QuestionItem.__proto__ || Object.getPrototypeOf(QuestionItem)).call(this, props));
-
-	        _this.state = {
-	            showPromptDialog: false,
-	            showDialog: false,
-	            message: '',
-	            isAnswerOk: false
-	        };
-	        return _this;
-	    }
-
-	    _createClass(QuestionItem, [{
-	        key: 'checkAnswer',
-	        value: function checkAnswer(answerClicked, correctAnswer) {
-	            return answerClicked == correctAnswer ? true : false;
-	        }
-	    }, {
-	        key: 'openConfirmationDialog',
-	        value: function openConfirmationDialog() {
-	            this.setState({ showPromptDialog: true, message: _general_constant2.default.DO_YOU_HAVE_SURE_THE_ANSWER });
-	        }
-	    }, {
-	        key: 'incrementPos',
-	        value: function incrementPos(event) {
-	            //this.props.questionsDisabled = null;
-	            var answerClicked = parseInt(event.target.getAttribute('target'), 10);
-	            var correctAnswer = this.props.correctAnswer;
-	            var isAnswerOk = this.checkAnswer(answerClicked, correctAnswer);
-	            this.setState({ isAnswerOk: isAnswerOk });
-	            this.openConfirmationDialog();
-	        }
-	    }, {
-	        key: 'callbackYes',
-	        value: function callbackYes() {
-	            var newPos = this.props.position + 1;
-	            this.props.onItemSelect(this.props.questions[newPos], newPos);
-	        }
-	    }, {
-	        key: 'callbackNo',
-	        value: function callbackNo() {
-	            this.setState({ showPromptDialog: false });
-	        }
-	    }, {
-	        key: 'callbackGameOver',
-	        value: function callbackGameOver() {
-	            this.setState({ showDialog: true, message: _general_constant2.default.YOU_LOSE });
-	        }
-	    }, {
-	        key: 'processAnswer',
-	        value: function processAnswer() {
-	            this.state.isAnswerOk ? this.callbackYes() : this.callbackGameOver();
-	        }
-	    }, {
-	        key: 'renderDialogNormal',
-	        value: function renderDialogNormal() {
-	            return _react2.default.createElement(_dialog2.default, { type: _general_constant2.default.dialog.NORMAL, message: this.state.message });
-	        }
-	    }, {
-	        key: 'renderDialogPrompt',
-	        value: function renderDialogPrompt() {
-	            var _this2 = this;
-
-	            return _react2.default.createElement(_dialog2.default, { type: _general_constant2.default.dialog.PROMPT,
-	                callbackYes: function callbackYes() {
-	                    _this2.processAnswer();
-	                },
-	                callbackNo: function callbackNo() {
-	                    _this2.callbackNo();
-	                },
-	                message: this.state.message });
-	        }
-	    }, {
-	        key: 'renderList',
-	        value: function renderList() {
-	            var _this3 = this;
-
-	            return _react2.default.createElement(
-	                'li',
-	                { onClick: function onClick(event) {
-	                        return _this3.incrementPos(event);
-	                    },
-	                    target: this.props.target,
-	                    className: 'listItem' },
-	                this.props.item
-	            );
-	        }
-	    }, {
-	        key: 'renderListDisabled',
-	        value: function renderListDisabled() {
-	            return _react2.default.createElement(
-	                'li',
-	                { className: 'listItemDisabled' },
-	                this.props.item
-	            );
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                this.state.showPromptDialog ? this.renderDialogPrompt() : '',
-	                this.state.showDialog ? this.renderDialogNormal() : '',
-	                this.props.disabled ? this.renderListDisabled() : this.renderList()
-	            );
-	        }
-	    }]);
-
-	    return QuestionItem;
-	}(_react.Component);
-
-	exports.default = QuestionItem;
-
-/***/ },
-/* 167 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
 	var _button = __webpack_require__(161);
 
 	var _button2 = _interopRequireDefault(_button);
 
-	var _brain = __webpack_require__(168);
+	var _brain = __webpack_require__(164);
 
 	var _brain2 = _interopRequireDefault(_brain);
 
@@ -20587,9 +20234,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_button2.default, { btnType: 'btn', title: 'Reiniciar', clickCallback: function clickCallback() {
-	                        return location.reload();
-	                    } })
+	                _react2.default.createElement(_button2.default, { btnType: 'btn', title: 'carregando pr\xF3xima pergunta...' })
 	            );
 	        }
 	    }, {
@@ -20682,6 +20327,8 @@
 	                        null,
 	                        this.props.message
 	                    ),
+	                    this.props.showMsgTryAgain ? '' : '',
+	                    this.props.showMsgTryAgain ? this.getLoseContent() : '',
 	                    _react2.default.createElement(
 	                        'div',
 	                        null,
@@ -20713,7 +20360,7 @@
 	exports.default = Dialog;
 
 /***/ },
-/* 168 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20722,11 +20369,11 @@
 	    value: true
 	});
 
-	var _dataQuestions = __webpack_require__(169);
+	var _dataQuestions = __webpack_require__(165);
 
 	var _dataQuestions2 = _interopRequireDefault(_dataQuestions);
 
-	var _career = __webpack_require__(170);
+	var _career = __webpack_require__(166);
 
 	var _career2 = _interopRequireDefault(_career);
 
@@ -20839,7 +20486,7 @@
 	exports.default = { brainQuestions: brainQuestions, shuffleList: shuffleList, wrongOrCorrect: wrongOrCorrect, getGuessProfessionalCareer: getGuessProfessionalCareer };
 
 /***/ },
-/* 169 */
+/* 165 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20850,69 +20497,69 @@
 	var QUIZZ_OBJ = [{
 	     "question": "A validade do material hospitalar está condicionada, principalmente, a:",
 	     "choice": ["(a) Invólucro do pacote e manuseio", "(b) processo de esterilização e manuseio", "(c) Invólucro do pacote e condições de armazenamento", "(d) Processo de esterilização e condições de armazenamento"],
-	     "correct": { position: 3, item: 'd' }
+	     "correct": { position: 3, item: 'd', desc: 'Processo de esterilização e condições de armazenamento' }
 	}, {
 	     "question": "Sobre desinfecção de artigos médico hospitalares, assinale a alternativa correta:",
-	     "choice": ["(a) Não há necessidade de limpeza rigorosa e minunciosa do material, antes do processo  de desinfecção", "(b) O único método de desinfecção para produtos de saúde é o químico, que age pelo uso de desinfectantes como: ácido peracético, álcool, entre outros", "(c) Segundo a classificação de Spaulding, a desinfecção é indicada para produtos para saúde críticos que entram em contato com membranas mucosas colonizadas ou pele não íntegra, mas restrita a ela", "(d) A desinfecção de materiais consiste em processo de eliminação de microorganismos presentes nos produtos utilizados  para assistência à saúde, porém com menor poder letal que a esterelização, pois não destrói todas as formas de vida microbiana, principalmente os esporos"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 3, item: 'd' }
+	     "choice": ["(a) Não há necessidade de limpeza rigorosa e minunciosa do material, antes do processo  de desinfecção", "(b) O único método de desinfecção para produtos de saúde é o químico, que age pelo uso de desinfectantes como: ácido peracético, álcool, entre outros", "(c) Segundo a classificação de Spaulding, a desinfecção é indicada para produtos para saúde críticos que entram em contato com membranas mucosas colonizadas ou pele não íntegra, mas restrita a ela", "(d) A desinfecção de materiais consiste em processo de eliminação de microorganismos presentes nos produtos utilizados  para assistência à saúde, porém com menor poder letal que a esterelização, pois não destrói todas as formas de vida microbiana, principalmente os esporos"],
+	     "correct": { position: 3, item: 'd', desc: 'A desinfecção de materiais consiste em processo de eliminação de microorganismos presentes nos produtos utilizados  para assistência à saúde, porém com menor poder letal que a esterelização, pois não destrói todas as formas de vida microbiana, principalmente os esporos' }
 	}, {
 	     "question": "Assinale a alternativa INCORRETA em relação à esterilização de material de tecido, que deve ser feita com/em:",
 	     "choice": ["(a) Raios beta", "(b) Raios Gama", "(c) Raios de cobalto", "(d) autoclave"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 3, item: 'autoclave' }
+	     "correct": { position: 3, item: 'd', desc: 'autoclave' }
 	}, {
 	     "question": "No procedimento básico para esterilização, as caixas metálicas devem:",
 	     "choice": ["(a) Ficar bem fechadas", "(b) Permanecer com as tampas separadas", "(c) Permanecer sobre os demais materiais", "(d) ser abertas após a esterilização"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 1, item: 'Permanecer com as tampas separadas' }
+	     "correct": { position: 1, item: 'b', desc: 'Permanecer com as tampas separadas' }
 	}, {
 	     "question": "O papel grau cirúrgico e as caixas metálicas perfuradas são embalagens compatíveis com o método de esterilização:",
 	     "choice": ["(a) Vapor sob pressão e óxido de etileno", "(b) Calor seco e plasma de peróxido de hidrogênio", "(c) Radiação ionizante e calor seco", "(d) Nenhuma opção"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 0, item: 'Vapor sob pressão e óxido de etileno' }
+	     "correct": { position: 0, item: 'a', desc: 'Vapor sob pressão e óxido de etileno' }
 	}, {
 	     "question": "Etapa inicial do processamento de artigos que está ligada à qualidade final do processo:",
 	     "choice": ["(a) Desinfecção", "(b) Esterilização", "(c) Limpeza", "(d) Anti-Sepsia"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 2, item: 'limpeza' }
+	     "correct": { position: 2, item: 'c', desc: 'limpeza' }
 	}, {
 	     "question": "Endoscópicos são exemplos de artigos:",
 	     "choice": ["(a) Artigos críticos", "(b) Semi-críticos", "(c) Não críticos", "(d) Artigos de uso único"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 1, item: 'b' }
+	     "correct": { position: 1, item: 'b', desc: 'Semi-críticos' }
 	}, {
 	     "question": "Pelo processo físico, a técnica de esterilização considerada mais eficiente em instrumentos hospitalares, é feita por:",
 	     "choice": ["(a) Estufa", "(b) Autoclave", "(c) Tendalização", "(d) Pausterização"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 1, item: 'Autoclave' }
+	     "correct": { position: 1, item: 'b', desc: 'Autoclave' }
 	}, {
 	     "question": "Material estéril é considerado:",
 	     "choice": ["(a) Desifentado", "(b) Desinfestado", "(c) Asséptico", "(d) Antisséptico"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 3, item: 'Antisséptico' }
+	     "correct": { position: 3, item: 'd', desc: 'Antisséptico' }
 	}, {
 	     "question": "Autoclave é o aparelho que esteriliza:",
 	     "choice": ["(a) A seco", "(b) Por umidade", "(c) Por radiação", "(d) Com desifetante"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 0, item: 'A seco' }
+	     "correct": { position: 0, item: 'a', desc: 'A seco' }
 	}, {
 	     "question": "O objetivo da escovação conhecida como degermacao pré cirúrgica é:",
-	     "choice": ["(a) Realizar a técnica de lavagem das mãos da equipe cirúrgica", "(b) Realizar antisseptico da pele do paciente antes da incisão cirúrgica", "(c) utilizar escova especial para lavar os instrumentais usados em cirurgia", "(d) remover gorduras, sujidades e outros elementos  da pele das mãos e  antebraços da equipe  cirúrgica antes da cirurgia"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 3, item: 'd' }
+	     "choice": ["(a) Realizar a técnica de lavagem das mãos da equipe cirúrgica", "(b) Realizar antisseptico da pele do paciente antes da incisão cirúrgica", "(c) utilizar escova especial para lavar os instrumentais usados em cirurgia", "(d) remover gorduras, sujidades e outros elementos  da pele das mãos e  antebraços da equipe  cirúrgica antes da cirurgia"],
+	     "correct": { position: 3, item: 'd', desc: 'remover gorduras, sujidades e outros elementos  da pele das mãos e  antebraços da equipe  cirúrgica antes da cirurgia' }
 	}, {
 	     "question": "O agente químico indicado para desinfecção de superfície e mobiliário em berçários e pediatria, por possuir baixa toxicidade, é:",
 	     "choice": ["(a) Fenol sintético", "(b) Biguanida", "(c) Quaternário de amônia", "(d) álcool isopropilico"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 2, item: 'quaternário de amônia' }
+	     "correct": { position: 2, item: 'c', desc: 'quaternário de amônia' }
 	}, {
 	     "question": "Expurgo é um setor que se localiza no:",
 	     "choice": ["(a) Centro de material esterilizado com sistema de centralização geral", "(b) Sala de operações", "(c) Sala de preparo de luvas", "(d) Centro cirúrgico propriamente dito"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 0, item: 'a' }
+	     "correct": { position: 0, item: 'a', desc: 'Centro de material esterilizado com sistema de centralização geral' }
 	}, {
 	     "question": "A esterilização na estufa é um processo que é feito por:",
 	     "choice": ["(a) Oxidação do protoplasma das bactérias", "(b) Queima de bactérias", "(c) Condução do calor", "(d) Condensação do vapor"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 0, item: 'a' }
+	     "correct": { position: 0, item: 'a', desc: 'Oxidação do protoplasma das bactérias' }
 	}, {
 	     "question": "Processo aplicado para superfícies inertes, que elimina micro-organismos na forma vegetativa, Exceto esporos:",
 	     "choice": ["(a) Desinfeção", "(b) Descontaminação", "(c) Esterilização", "(d) Antissepsia"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 0, item: 'a' }
+	     "correct": { position: 0, item: 'a', desc: 'Desinfeção' }
 	}];
 
 	exports.default = { QUIZZ_OBJ: QUIZZ_OBJ };
 
 /***/ },
-/* 170 */
+/* 166 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20927,6 +20574,443 @@
 	};
 
 	exports.default = { getCareers: getCareers };
+
+/***/ },
+/* 167 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _questionTitle = __webpack_require__(168);
+
+	var _questionTitle2 = _interopRequireDefault(_questionTitle);
+
+	var _questionList = __webpack_require__(169);
+
+	var _questionList2 = _interopRequireDefault(_questionList);
+
+	var _questionHelp = __webpack_require__(171);
+
+	var _questionHelp2 = _interopRequireDefault(_questionHelp);
+
+	var _brain = __webpack_require__(164);
+
+	var _brain2 = _interopRequireDefault(_brain);
+
+	var _toolbar = __webpack_require__(172);
+
+	var _toolbar2 = _interopRequireDefault(_toolbar);
+
+	var _questionMoney = __webpack_require__(173);
+
+	var _questionMoney2 = _interopRequireDefault(_questionMoney);
+
+	var _progressBar = __webpack_require__(174);
+
+	var _progressBar2 = _interopRequireDefault(_progressBar);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Content = function (_Component) {
+	    _inherits(Content, _Component);
+
+	    function Content(props) {
+	        _classCallCheck(this, Content);
+
+	        var _this = _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
+
+	        var START_POSITION = 0;
+	        _this.state = {
+	            questions: _brain2.default.brainQuestions,
+	            selectedQuestion: _brain2.default.brainQuestions[START_POSITION],
+	            position: START_POSITION,
+	            correctAnswer: _brain2.default.brainQuestions[START_POSITION].correct.position,
+	            questionsDisabled: null,
+	            valueSuccess: 0,
+	            valueError: 0
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Content, [{
+	        key: 'onInputChange',
+	        value: function onInputChange(selectedQuestion, pos, valueSuccess, valueError) {
+	            this.setState({
+	                selectedQuestion: selectedQuestion,
+	                position: pos,
+	                correctAnswer: selectedQuestion.correct.position,
+	                questionsDisabled: null,
+	                valueSuccess: valueSuccess,
+	                valueError: valueError
+	            });
+	        }
+	    }, {
+	        key: 'onItemSelectHelp',
+	        value: function onItemSelectHelp(type) {}
+	    }, {
+	        key: 'onDisableQuestions',
+	        value: function onDisableQuestions(optChosen) {
+	            this.setState({ questionsDisabled: optChosen });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(_toolbar2.default, null),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'content' },
+	                    _react2.default.createElement(_questionTitle2.default, { position: this.state.position, questionData: this.state.selectedQuestion, nextQuestion: this.nextQuestion }),
+	                    _react2.default.createElement(_progressBar2.default, { valueSuccess: this.state.valueSuccess, valueError: this.state.valueError }),
+	                    _react2.default.createElement(_questionList2.default, {
+	                        onItemSelect: function onItemSelect(selectedQuestion, pos, valueSuccess, valueError) {
+	                            return _this2.onInputChange(selectedQuestion, pos, valueSuccess, valueError);
+	                        },
+	                        questions: this.state.questions,
+	                        position: this.state.position,
+	                        correctAnswer: this.state.correctAnswer,
+	                        questionData: this.state.selectedQuestion,
+	                        valueSuccess: this.state.valueSuccess,
+	                        valueError: this.state.valueError,
+	                        questionsDisabled: this.state.questionsDisabled }),
+	                    _react2.default.createElement(_questionHelp2.default, {
+	                        onItemSelectHelp: function onItemSelectHelp(type) {
+	                            return _this2.onItemSelectHelp(type);
+	                        },
+	                        questions: this.state.questions,
+	                        correctAnswer: this.state.correctAnswer,
+	                        selectedQuestion: this.state.selectedQuestion,
+	                        onDisableQuestions: function onDisableQuestions(optChosen) {
+	                            return _this2.onDisableQuestions(optChosen);
+	                        } }),
+	                    _react2.default.createElement(_questionMoney2.default, null)
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Content;
+	}(_react.Component);
+
+	exports.default = Content;
+
+/***/ },
+/* 168 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var QuestionTitle = function QuestionTitle(_ref) {
+	    var questionData = _ref.questionData,
+	        position = _ref.position;
+
+
+	    var pos = position + 1;
+
+	    return _react2.default.createElement(
+	        "div",
+	        { className: "col-xs-12 col-md-12 col-sm-12 col-lg-12" },
+	        _react2.default.createElement(
+	            "div",
+	            { className: "card" },
+	            _react2.default.createElement(
+	                "h5",
+	                null,
+	                pos + ". " + questionData.question
+	            )
+	        )
+	    );
+	};
+
+	exports.default = QuestionTitle;
+
+/***/ },
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _questionItem = __webpack_require__(170);
+
+	var _questionItem2 = _interopRequireDefault(_questionItem);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var QuestionList = function QuestionList(props) {
+
+	    var countQuestionDisabled = 0;
+
+	    var renderQuestion = function renderQuestion(item, index) {
+	        return _react2.default.createElement(_questionItem2.default, {
+	            onItemSelect: props.onItemSelect,
+	            questions: props.questions,
+	            position: props.position,
+	            correctAnswer: props.correctAnswer,
+	            questionsDisabled: props.questionsDisabled,
+	            valueError: props.valueError,
+	            valueSuccess: props.valueSuccess,
+	            key: item,
+	            target: index,
+	            item: item });
+	    };
+
+	    var renderQuestionDisabled = function renderQuestionDisabled(questionsDisabled, item, index) {
+	        questionsDisabled = parseInt(props.questionsDisabled, 10);
+	        if (countQuestionDisabled < questionsDisabled && index !== props.correctAnswer) {
+	            countQuestionDisabled++;
+	            return _react2.default.createElement(_questionItem2.default, {
+	                disabled: true,
+	                onItemSelect: props.onItemSelect,
+	                questions: props.questions,
+	                position: props.position,
+	                correctAnswer: props.correctAnswer,
+	                questionsDisabled: props.questionsDisabled,
+	                key: item,
+	                valueError: props.valueError,
+	                valueSuccess: props.valueSuccess,
+	                target: index,
+	                item: item });
+	        } else {
+	            return _react2.default.createElement(_questionItem2.default, {
+	                disabled: index === props.correctAnswer || countQuestionDisabled === questionsDisabled ? false : true,
+	                onItemSelect: props.onItemSelect,
+	                questions: props.questions,
+	                position: props.position,
+	                correctAnswer: props.correctAnswer,
+	                questionsDisabled: props.questionsDisabled,
+	                valueError: props.valueError,
+	                valueSuccess: props.valueSuccess,
+	                key: item,
+	                target: index,
+	                item: item });
+	        }
+	    };
+
+	    var questionAnswers = props.questionData.choice.map(function (item, index) {
+	        return !props.questionsDisabled ? renderQuestion(item, index) : renderQuestionDisabled(props.questionsDisabled, item, index);
+	    });
+
+	    /*const incrementPos = () => {
+	        let newPos = props.position + 1;
+	        props.onItemSelect(props.questions[newPos], newPos);
+	    };*/
+
+	    return _react2.default.createElement(
+	        'div',
+	        { className: 'col-xs-12 col-sm-12 col-md-6 col-lg-6' },
+	        _react2.default.createElement(
+	            'div',
+	            { className: 'card' },
+	            _react2.default.createElement(
+	                'ul',
+	                { className: 'list' },
+	                questionAnswers
+	            )
+	        )
+	    );
+	};
+
+	exports.default = QuestionList;
+
+/***/ },
+/* 170 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _dialog = __webpack_require__(163);
+
+	var _dialog2 = _interopRequireDefault(_dialog);
+
+	var _general_constant = __webpack_require__(162);
+
+	var _general_constant2 = _interopRequireDefault(_general_constant);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var QuestionItem = function (_Component) {
+	    _inherits(QuestionItem, _Component);
+
+	    function QuestionItem(props) {
+	        _classCallCheck(this, QuestionItem);
+
+	        var _this = _possibleConstructorReturn(this, (QuestionItem.__proto__ || Object.getPrototypeOf(QuestionItem)).call(this, props));
+
+	        _this.state = {
+	            showPromptDialog: false,
+	            showDialog: false,
+	            message: '',
+	            isAnswerOk: false,
+	            showAnswerCorrect: false
+	        };
+	        return _this;
+	    }
+
+	    _createClass(QuestionItem, [{
+	        key: 'checkAnswer',
+	        value: function checkAnswer(answerClicked, correctAnswer) {
+	            return answerClicked == correctAnswer ? true : false;
+	        }
+	    }, {
+	        key: 'openConfirmationDialog',
+	        value: function openConfirmationDialog() {
+	            this.setState({ showPromptDialog: true, message: _general_constant2.default.DO_YOU_HAVE_SURE_THE_ANSWER });
+	        }
+	    }, {
+	        key: 'incrementPos',
+	        value: function incrementPos(event) {
+	            //this.props.questionsDisabled = null;
+	            var answerClicked = parseInt(event.target.getAttribute('target'), 10);
+	            var correctAnswer = this.props.correctAnswer;
+	            var isAnswerOk = this.checkAnswer(answerClicked, correctAnswer);
+	            this.setState({ isAnswerOk: isAnswerOk });
+	            this.openConfirmationDialog();
+	        }
+	    }, {
+	        key: 'callbackYes',
+	        value: function callbackYes() {
+	            var newPos = this.props.position + 1;
+	            var valueSuccess = this.state.isAnswerOk ? this.props.valueSuccess + 1 : this.props.valueSuccess;
+	            var valueError = !this.state.isAnswerOk ? this.props.valueError + 1 : this.props.valueError;
+	            this.props.onItemSelect(this.props.questions[newPos], newPos, valueSuccess, valueError);
+	        }
+	    }, {
+	        key: 'callbackNo',
+	        value: function callbackNo() {
+	            this.setState({ showPromptDialog: false });
+	        }
+	    }, {
+	        key: 'callbackGameOver',
+	        value: function callbackGameOver() {
+	            var that = this;
+	            var position = this.props.position;
+	            var item = this.props.questions[position];
+	            var options = ['a', 'b', 'c', 'd'];
+	            var message = 'A resposta correta \xE9 o item(' + options[item.correct.position] + ') - ' + item.correct.desc + '.';
+	            that.setState({ showDialog: true, message: message });
+	            setTimeout(function () {
+	                that.callbackYes();
+	            }, 2000);
+	        }
+	    }, {
+	        key: 'processAnswer',
+	        value: function processAnswer() {
+	            this.state.isAnswerOk ? this.callbackYes() : this.callbackGameOver();
+	        }
+	    }, {
+	        key: 'renderDialogNormal',
+	        value: function renderDialogNormal(isTryAgain) {
+	            return _react2.default.createElement(_dialog2.default, { type: _general_constant2.default.dialog.NORMAL, showMsgTryAgain: isTryAgain, message: this.state.message });
+	        }
+	    }, {
+	        key: 'renderDialogPrompt',
+	        value: function renderDialogPrompt() {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(_dialog2.default, { type: _general_constant2.default.dialog.PROMPT,
+	                callbackYes: function callbackYes() {
+	                    _this2.processAnswer();
+	                },
+	                callbackNo: function callbackNo() {
+	                    _this2.callbackNo();
+	                },
+	                message: this.state.message });
+	        }
+	    }, {
+	        key: 'renderList',
+	        value: function renderList() {
+	            var _this3 = this;
+
+	            return _react2.default.createElement(
+	                'li',
+	                { onClick: function onClick(event) {
+	                        return _this3.incrementPos(event);
+	                    },
+	                    target: this.props.target,
+	                    className: 'listItem' },
+	                this.props.item
+	            );
+	        }
+	    }, {
+	        key: 'renderListDisabled',
+	        value: function renderListDisabled() {
+	            return _react2.default.createElement(
+	                'li',
+	                { className: 'listItemDisabled' },
+	                this.props.item
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this.state.showPromptDialog ? this.renderDialogPrompt() : '',
+	                this.state.showDialog ? this.renderDialogNormal(true) : '',
+	                this.props.disabled ? this.renderListDisabled() : this.renderList()
+	            );
+	        }
+	    }]);
+
+	    return QuestionItem;
+	}(_react.Component);
+
+	exports.default = QuestionItem;
 
 /***/ },
 /* 171 */
@@ -20952,7 +21036,7 @@
 
 	var _button2 = _interopRequireDefault(_button);
 
-	var _dialog = __webpack_require__(167);
+	var _dialog = __webpack_require__(163);
 
 	var _dialog2 = _interopRequireDefault(_dialog);
 
@@ -21011,7 +21095,7 @@
 	                    { key: index, className: 'helpIcons', onClick: function onClick(type) {
 	                            return that.getHelp(icon.type);
 	                        } },
-	                    _react2.default.createElement('img', { src: "images/" + icon.img }),
+	                    _react2.default.createElement('img', { src: "/images/" + icon.img }),
 	                    icon.title
 	                );
 	            };
@@ -21172,7 +21256,7 @@
 
 	var _button2 = _interopRequireDefault(_button);
 
-	var _dialog = __webpack_require__(167);
+	var _dialog = __webpack_require__(163);
 
 	var _dialog2 = _interopRequireDefault(_dialog);
 
@@ -21192,6 +21276,79 @@
 	};
 
 	exports.default = QuestionMoney;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ProgressBar = function (_Component) {
+	    _inherits(ProgressBar, _Component);
+
+	    function ProgressBar(props) {
+	        _classCallCheck(this, ProgressBar);
+
+	        var _this = _possibleConstructorReturn(this, (ProgressBar.__proto__ || Object.getPrototypeOf(ProgressBar)).call(this, props));
+
+	        _this.state = {
+	            showDialog: false
+	        };
+	        return _this;
+	    }
+
+	    _createClass(ProgressBar, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "col-xs-12" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "col-xs-12 progressbar" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "percent", style: { width: 100 + '%' } },
+	                        "Corretas: ",
+	                        _react2.default.createElement(
+	                            "span",
+	                            { className: "success" },
+	                            this.props.valueSuccess
+	                        ),
+	                        " \xA0 Erradas: ",
+	                        _react2.default.createElement(
+	                            "span",
+	                            { className: "error" },
+	                            this.props.valueError
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return ProgressBar;
+	}(_react.Component);
+
+	exports.default = ProgressBar;
 
 /***/ }
 /******/ ]);
