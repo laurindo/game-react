@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Button from './button';
 import GeneralConstant from '../constants/general_constant';
-import Dialog from './dialog';
+import AboutGame from './about-game';
 
 export default class MenuStart extends Component {
     constructor(props) {
@@ -17,6 +17,12 @@ export default class MenuStart extends Component {
         }); 
     }
 
+    hideDialog() {
+        this.setState({
+            aboutGame: false
+        }); 
+    }
+
     render() {
         return (
             <div className="startPage">
@@ -27,7 +33,7 @@ export default class MenuStart extends Component {
                         clickCallback={this.props.showMenuStart} />
                 </div>
                 <a onClick={ () => { this.showDialog() } } href="#">Sobre o game</a>
-                {this.state.aboutGame ? <Dialog type="normal" message={GeneralConstant.ABOUT_GAME} /> : ''}
+                {this.state.aboutGame ? <AboutGame closeDialog={() => { this.hideDialog() }} message={GeneralConstant.ABOUT_GAME} /> : ''}
             </div>
         );
     }
