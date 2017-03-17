@@ -32,7 +32,7 @@ export default class MenuStart extends Component {
                         btnType="btnStart" 
                         clickCallback={this.props.showMenuStart} />
                 </div>
-                <a onClick={ () => { this.showDialog() } } href="#">Sobre o game</a>
+                <a onClick={ () => { this.showDialog() } } href="#">{GeneralConstant.ABOUT_GAME_TITLE}</a>
                 {this.state.aboutGame ? <AboutGame closeDialog={() => { this.hideDialog() }} message={GeneralConstant.ABOUT_GAME} /> : ''}
             </div>
         );

@@ -95,6 +95,10 @@ body {
     cursor: pointer;
 }
 
+.center {
+    text-align: center;
+}
+
 .centerMenu {
     margin-top: 20%;
     position: absolute;
@@ -320,4 +324,14 @@ body {
     background-color: #fff;
     border-radius: 20px;
     cursor: pointer;
+}
+
+.points h6 {
+    text-align: center;
+}
+
+.points p {
+    text-align: center;
+    font-size: 2em;
+    color: #2393dd;
 }

@@ -107,7 +107,7 @@ class Dialog extends Component {
     getLoseContent() {
         return (
             <div>
-                <Button btnType="btn" title="carregando próxima pergunta..." />
+                <Button btnType="btn" title="Próxima pergunta" clickCallback={this.props.clickCallback} />
             </div>
         );
     };
@@ -139,17 +139,12 @@ class Dialog extends Component {
     }
 
     getContentScore() {
-        let that = this;
         return (
             <div className="col-xs-12">
                 <ol>
-                    <li className="rankingList">dffs</li>
-                    <li className="rankingList">dffs</li>
-                    <li className="rankingList">dffs</li>
-                    <li className="rankingList">dffs</li>
-                    <li className="rankingList">dffs</li>
+                    <li className="rankingList">Acertos: </li>
+                    <li className="rankingList">Erros: </li>
                 </ol>
-                {that.getLoseContent()}
             </div>
         );
     };
@@ -160,7 +155,8 @@ class Dialog extends Component {
                 <div className="dropscreen"></div>
                 <div className="card dialog">
                     <h4>{this.props.message}</h4>
-                    {this.props.showMsgTryAgain ? '' : ''}
+                    <p className="center">{this.props.description}</p>
+                    {this.props.showScoreFinal ? this.getContentScore() : ''}
                     {this.props.showMsgTryAgain ? this.getLoseContent() : ''}
                     <div>{ (this.props.type && this.props.type !== 'lose') ? this.getContent() : '' }</div>
                     <div>{ (this.props.type && this.props.type === 'lose') ? this.getContentLose() : '' }</div>

@@ -10,7 +10,8 @@ class QuestionItem extends Component {
             showDialog: false,
             message: '',
             isAnswerOk: false,
-            showAnswerCorrect: false
+            showAnswerCorrect: false,
+            showGameOver: false
         };
     }
     checkAnswer (answerClicked, correctAnswer) {
@@ -20,7 +21,6 @@ class QuestionItem extends Component {
         this.setState({showPromptDialog: true, message: ConstantGeneral.DO_YOU_HAVE_SURE_THE_ANSWER});
     }
     incrementPos(event) {
-        //this.props.questionsDisabled = null;
         let answerClicked = parseInt(event.target.getAttribute('target'), 10);
         let correctAnswer = this.props.correctAnswer;
         let isAnswerOk = this.checkAnswer(answerClicked, correctAnswer);
@@ -31,7 +31,15 @@ class QuestionItem extends Component {
         let newPos = this.props.position + 1;
         let valueSuccess = this.state.isAnswerOk ? this.props.valueSuccess + 1 : this.props.valueSuccess;
         let valueError = !this.state.isAnswerOk ? this.props.valueError + 1 : this.props.valueError;
-        this.props.onItemSelect(this.props.questions[newPos], newPos, valueSuccess, valueError);
+        if (newPos === 1) {
+            this.setState({
+                showDialog: false,
+                showPromptDialog: false,
+                showGameOver: true
+            });
+            return;
+        }
+        this.props.onItemSelect(this.props.questions[newPos], newPos, valueSuccess, valueError, this.state.isAnswerOk);
     }
     callbackNo() {
         this.setState({showPromptDialog: false});
@@ -43,16 +51,18 @@ class QuestionItem extends Component {
         let options = ['a', 'b', 'c', 'd'];
         let message = `A resposta correta é o item(${options[item.correct.position]}) - ${item.correct.desc}.`;
         that.setState({showDialog: true, message: message});
-        setTimeout(function() {
-            that.callbackYes();
-        }, 2000);
     }
     processAnswer() {
         this.state.isAnswerOk ? this.callbackYes() : this.callbackGameOver();
     }
+    renderGameOver() {
+        return (
+            <Dialog type={ConstantGeneral.dialog.NORMAL} showScoreFinal={true} message={ConstantGeneral.FINISH_GAME} description={ConstantGeneral.CONGRATULATIONS} />
+        );
+    }
     renderDialogNormal(isTryAgain) {
         return (
-            <Dialog type={ConstantGeneral.dialog.NORMAL} showMsgTryAgain={isTryAgain} message={this.state.message} />
+            <Dialog clickCallback={() => { this.callbackYes() }} type={ConstantGeneral.dialog.NORMAL} showMsgTryAgain={isTryAgain} message={this.state.message} />
         );
     }
     renderDialogPrompt() {
@@ -80,6 +90,7 @@ class QuestionItem extends Component {
     render() {
         return (
             <div>
+                {this.state.showGameOver ? this.renderGameOver() : ''}
                 {this.state.showPromptDialog ? this.renderDialogPrompt() : ''}
                 {this.state.showDialog ? this.renderDialogNormal(true) : ''}
                 {(this.props.disabled) ? this.renderListDisabled() : this.renderList() }
