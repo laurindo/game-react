@@ -38,6 +38,16 @@ body {
     text-align: center;
 }
 
+.menuStart input {
+    border: 0;
+    border-radius: 10px;
+    padding: 5px 20px;
+    background-color: #fff;
+    opacity: 0.8;
+    color: #000;
+    outline: none;
+}
+
 .menuStart img {
     margin-top: 50px;
 }
@@ -93,6 +103,10 @@ body {
     margin-top: 0;
     background-color: #99bd7f;
     cursor: pointer;
+}
+
+.center {
+    text-align: center;
 }
 
 .centerMenu {
@@ -294,4 +308,49 @@ body {
     background-color: rgb(255, 35, 115);
     border-radius: 10px;
     color: #fff;
+}
+
+.aboutGame {
+    color: #fff;
+    position: fixed;
+    z-index: 1234;
+    padding: 25%;
+    text-align: center;
+    width: 100%;
+    font-size: 2.5em;
+    height: 100%;
+    background-color: #2393dd;
+    opacity: 0.9;
+}
+
+.closeAboutGame {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 12345;
+    font-size: 1em;
+    color: rgb(255, 59, 88);
+    padding: 5px 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.points h6 {
+    text-align: center;
+}
+
+.points p {
+    text-align: center;
+    font-size: 2em;
+    color: #2393dd;
+}
+
+.pointFinal {
+    padding:2px 10px;
+    background-color: rgb(144, 134, 255);
+    border-radius: 20px;
+    margin-right: 5px;
+    color: #fff;
+    text-align: center;
 }
