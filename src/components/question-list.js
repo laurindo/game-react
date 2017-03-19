@@ -15,6 +15,7 @@ const QuestionList = (props) => {
                 questionsDisabled={props.questionsDisabled}
                 valueError={props.valueError}
                 valueSuccess={props.valueSuccess}
+                point={props.point}
                 key={item} 
                 target={index}
                 item={item} />
@@ -36,6 +37,7 @@ const QuestionList = (props) => {
                     key={item} 
                     valueError={props.valueError}
                     valueSuccess={props.valueSuccess}
+                    point={props.point}
                     target={index}
                     item={item} />
             );
@@ -50,6 +52,7 @@ const QuestionList = (props) => {
                     questionsDisabled={props.questionsDisabled}
                     valueError={props.valueError}
                     valueSuccess={props.valueSuccess}
+                    point={props.point}
                     key={item} 
                     target={index}
                     item={item} />

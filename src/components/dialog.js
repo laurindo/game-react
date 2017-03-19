@@ -107,7 +107,7 @@ class Dialog extends Component {
     getLoseContent() {
         return (
             <div>
-                <Button btnType="btn" title="carregando próxima pergunta..." />
+                <Button btnType="btn" title="Próxima pergunta" clickCallback={this.props.clickCallback} />
             </div>
         );
     };
@@ -139,17 +139,29 @@ class Dialog extends Component {
     }
 
     getContentScore() {
-        let that = this;
+        let ranking = localStorage.getItem('ranking.quizz.game');
+        let positionFinal;
+        if (ranking) {
+            ranking = JSON.parse(ranking);
+            positionFinal = ranking.sort(function(a, b) {
+                return b.value - a.value;
+            })
+        }
+        let renderRanking = () => {
+            positionFinal = positionFinal.slice(0, 3);
+            return positionFinal.map((position) => { 
+                return (
+                    <li className="rankingList">{position.name} : {position.value}</li>
+                );
+            });
+        }
         return (
             <div className="col-xs-12">
-                <ol>
-                    <li className="rankingList">dffs</li>
-                    <li className="rankingList">dffs</li>
-                    <li className="rankingList">dffs</li>
-                    <li className="rankingList">dffs</li>
-                    <li className="rankingList">dffs</li>
-                </ol>
-                {that.getLoseContent()}
+                <ul>
+                    <li className="rankingList"><div className="pointFinal">Pontuação Final: {this.props.point}</div></li>
+                    <li className="rankingList center">Ranking:</li>
+                    {renderRanking()}
+                </ul>
             </div>
         );
     };
@@ -160,7 +172,8 @@ class Dialog extends Component {
                 <div className="dropscreen"></div>
                 <div className="card dialog">
                     <h4>{this.props.message}</h4>
-                    {this.props.showMsgTryAgain ? '' : ''}
+                    <p className="center">{this.props.description}</p>
+                    {this.props.showScoreFinal ? this.getContentScore() : ''}
                     {this.props.showMsgTryAgain ? this.getLoseContent() : ''}
                     <div>{ (this.props.type && this.props.type !== 'lose') ? this.getContent() : '' }</div>
                     <div>{ (this.props.type && this.props.type === 'lose') ? this.getContentLose() : '' }</div>

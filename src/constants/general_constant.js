@@ -6,6 +6,10 @@ export default {
     QUIT: 'Desistir',
     WANT_TO_QUIT: 'Deseja desistir?',
     ABOUT_GAME: 'Jogando Limpo é um jogo de perguntas e respostas.',
+    ABOUT_GAME_TITLE: 'Sobre o game', 
+    POINTS: 'Pontuação',
+    FINISH_GAME: 'Fim de Jogo',
+    CONGRATULATIONS: 'Parabéns, você chegou até o final.',
     dialog: {
         PROMPT: 'prompt',
         NORMAL: 'normal'

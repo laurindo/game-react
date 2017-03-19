@@ -20,18 +20,31 @@ export default class Content extends Component {
             correctAnswer: CoreGame.brainQuestions[START_POSITION].correct.position,
             questionsDisabled: null,
             valueSuccess: 0,
-            valueError: 0
+            valueError: 0,
+            point: 0
         };
     }
 
-    onInputChange (selectedQuestion, pos, valueSuccess, valueError) {
+    onInputChange (selectedQuestion, pos, valueSuccess, valueError, isPointGained) {
+        let ranking = localStorage.getItem('ranking.quizz.game');
+        let temporarilyPoint = this.state.point;
+        if (isPointGained) {
+            temporarilyPoint = temporarilyPoint + 50;
+        }
+        
+        if (ranking) {
+            ranking = JSON.parse(ranking);
+            ranking[ranking.length-1].value = temporarilyPoint;
+            localStorage.setItem('ranking.quizz.game', JSON.stringify(ranking));
+        }
         this.setState({
             selectedQuestion: selectedQuestion, 
             position: pos,
             correctAnswer: selectedQuestion.correct.position,
             questionsDisabled: null,
             valueSuccess: valueSuccess,
-            valueError: valueError
+            valueError: valueError,
+            point: temporarilyPoint
         });
     }
 
@@ -50,11 +63,12 @@ export default class Content extends Component {
                     <QuestionTitle position={this.state.position} questionData={this.state.selectedQuestion} nextQuestion={this.nextQuestion} />
                     <ProgressBar valueSuccess={this.state.valueSuccess} valueError={this.state.valueError} />
                     <QuestionList 
-                        onItemSelect={ (selectedQuestion, pos, valueSuccess, valueError) => this.onInputChange(selectedQuestion, pos, valueSuccess, valueError) } 
+                        onItemSelect={ (selectedQuestion, pos, valueSuccess, valueError, isGainedPoint) => this.onInputChange(selectedQuestion, pos, valueSuccess, valueError, isGainedPoint) } 
                         questions={this.state.questions}
                         position={this.state.position}
                         correctAnswer={this.state.correctAnswer}
                         questionData={this.state.selectedQuestion}
+                        point={this.state.point}
                         valueSuccess={this.state.valueSuccess}
                         valueError={this.state.valueError}
                         questionsDisabled={this.state.questionsDisabled} />
@@ -64,7 +78,7 @@ export default class Content extends Component {
                         correctAnswer={this.state.correctAnswer} 
                         selectedQuestion={this.state.selectedQuestion}
                         onDisableQuestions={ (optChosen) => this.onDisableQuestions(optChosen) } />
-                    <QuestionMoney />
+                    <QuestionMoney point={this.state.point} />
                 </div>
             </div>
         );
