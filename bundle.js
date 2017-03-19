@@ -67,7 +67,7 @@
 
 	var _menuStart2 = _interopRequireDefault(_menuStart);
 
-	var _content = __webpack_require__(167);
+	var _content = __webpack_require__(164);
 
 	var _content2 = _interopRequireDefault(_content);
 
@@ -88,12 +88,40 @@
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 	    _this.state = {
-	      showMenuStart: true
+	      showMenuStart: true,
+	      name: ''
 	    };
 	    return _this;
 	  }
 
 	  _createClass(App, [{
+	    key: 'hideMenuStart',
+	    value: function hideMenuStart() {
+	      this.setState({
+	        showMenuStart: false
+	      });
+	      var rankingData = {
+	        name: this.state.name,
+	        value: 0
+	      };
+	      var ranking = localStorage.getItem('ranking.quizz.game');
+	      if (ranking) {
+	        ranking = JSON.parse(ranking);
+	        ranking.push(rankingData);
+	      } else {
+	        ranking = [];
+	        ranking.push(rankingData);
+	      }
+	      localStorage.setItem('ranking.quizz.game', JSON.stringify(ranking));
+	    }
+	  }, {
+	    key: 'changeName',
+	    value: function changeName(e) {
+	      this.setState({
+	        name: e.target.value
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
@@ -101,8 +129,10 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        this.state.showMenuStart ? _react2.default.createElement(_menuStart2.default, { showMenuStart: function showMenuStart() {
-	            _this2.setState({ showMenuStart: false });
+	        this.state.showMenuStart ? _react2.default.createElement(_menuStart2.default, { changeName: function changeName(e) {
+	            _this2.changeName(e);
+	          }, showMenuStart: function showMenuStart() {
+	            _this2.hideMenuStart();
 	          } }) : '',
 	        _react2.default.createElement(_content2.default, null)
 	      );
@@ -19832,9 +19862,9 @@
 
 	var _general_constant2 = _interopRequireDefault(_general_constant);
 
-	var _dialog = __webpack_require__(163);
+	var _aboutGame = __webpack_require__(163);
 
-	var _dialog2 = _interopRequireDefault(_dialog);
+	var _aboutGame2 = _interopRequireDefault(_aboutGame);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19866,6 +19896,13 @@
 	            });
 	        }
 	    }, {
+	        key: 'hideDialog',
+	        value: function hideDialog() {
+	            this.setState({
+	                aboutGame: false
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -19876,19 +19913,30 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'menuStart' },
-	                    _react2.default.createElement('img', { src: 'images/logo.png' }),
-	                    _react2.default.createElement(_button2.default, { title: _general_constant2.default.button.START,
-	                        btnType: 'btnStart',
-	                        clickCallback: this.props.showMenuStart })
+	                    _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement('img', { src: 'images/logo.png' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        null,
+	                        _react2.default.createElement('input', { type: 'text', name: '', placeholder: 'Digite seu nome', onChange: this.props.changeName }),
+	                        _react2.default.createElement(_button2.default, { title: _general_constant2.default.button.START,
+	                            btnType: 'btnStart',
+	                            clickCallback: this.props.showMenuStart })
+	                    )
 	                ),
 	                _react2.default.createElement(
 	                    'a',
 	                    { onClick: function onClick() {
 	                            _this2.showDialog();
 	                        }, href: '#' },
-	                    'Sobre o game'
+	                    _general_constant2.default.ABOUT_GAME_TITLE
 	                ),
-	                this.state.aboutGame ? _react2.default.createElement(_dialog2.default, { type: 'normal', message: _general_constant2.default.ABOUT_GAME }) : ''
+	                this.state.aboutGame ? _react2.default.createElement(_aboutGame2.default, { closeDialog: function closeDialog() {
+	                        _this2.hideDialog();
+	                    }, message: _general_constant2.default.ABOUT_GAME }) : ''
 	            );
 	        }
 	    }]);
@@ -20022,6 +20070,10 @@
 	    QUIT: 'Desistir',
 	    WANT_TO_QUIT: 'Deseja desistir?',
 	    ABOUT_GAME: 'Jogando Limpo é um jogo de perguntas e respostas.',
+	    ABOUT_GAME_TITLE: 'Sobre o game',
+	    POINTS: 'Pontuação',
+	    FINISH_GAME: 'Fim de Jogo',
+	    CONGRATULATIONS: 'Parabéns, você chegou até o final.',
 	    dialog: {
 	        PROMPT: 'prompt',
 	        NORMAL: 'normal'
@@ -20050,6 +20102,537 @@
 /* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AboutGame = function (_Component) {
+	    _inherits(AboutGame, _Component);
+
+	    function AboutGame(props) {
+	        _classCallCheck(this, AboutGame);
+
+	        return _possibleConstructorReturn(this, (AboutGame.__proto__ || Object.getPrototypeOf(AboutGame)).call(this));
+	    }
+
+	    _createClass(AboutGame, [{
+	        key: "render",
+	        value: function render() {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(
+	                "div",
+	                null,
+	                _react2.default.createElement(
+	                    "p",
+	                    { className: "closeAboutGame", onClick: function onClick() {
+	                            _this2.props.closeDialog();
+	                        } },
+	                    "Fechar"
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "aboutGame" },
+	                    this.props.message
+	                )
+	            );
+	        }
+	    }]);
+
+	    return AboutGame;
+	}(_react.Component);
+
+	exports.default = AboutGame;
+
+/***/ },
+/* 164 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _questionTitle = __webpack_require__(165);
+
+	var _questionTitle2 = _interopRequireDefault(_questionTitle);
+
+	var _questionList = __webpack_require__(166);
+
+	var _questionList2 = _interopRequireDefault(_questionList);
+
+	var _questionHelp = __webpack_require__(172);
+
+	var _questionHelp2 = _interopRequireDefault(_questionHelp);
+
+	var _brain = __webpack_require__(169);
+
+	var _brain2 = _interopRequireDefault(_brain);
+
+	var _toolbar = __webpack_require__(173);
+
+	var _toolbar2 = _interopRequireDefault(_toolbar);
+
+	var _questionMoney = __webpack_require__(174);
+
+	var _questionMoney2 = _interopRequireDefault(_questionMoney);
+
+	var _progressBar = __webpack_require__(175);
+
+	var _progressBar2 = _interopRequireDefault(_progressBar);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Content = function (_Component) {
+	    _inherits(Content, _Component);
+
+	    function Content(props) {
+	        _classCallCheck(this, Content);
+
+	        var _this = _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
+
+	        var START_POSITION = 0;
+	        _this.state = {
+	            questions: _brain2.default.brainQuestions,
+	            selectedQuestion: _brain2.default.brainQuestions[START_POSITION],
+	            position: START_POSITION,
+	            correctAnswer: _brain2.default.brainQuestions[START_POSITION].correct.position,
+	            questionsDisabled: null,
+	            valueSuccess: 0,
+	            valueError: 0,
+	            point: 0
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Content, [{
+	        key: 'onInputChange',
+	        value: function onInputChange(selectedQuestion, pos, valueSuccess, valueError, isPointGained) {
+	            var ranking = localStorage.getItem('ranking.quizz.game');
+	            var temporarilyPoint = this.state.point;
+	            if (isPointGained) {
+	                temporarilyPoint = temporarilyPoint + 50;
+	            }
+
+	            if (ranking) {
+	                ranking = JSON.parse(ranking);
+	                ranking[ranking.length - 1].value = temporarilyPoint;
+	                localStorage.setItem('ranking.quizz.game', JSON.stringify(ranking));
+	            }
+	            this.setState({
+	                selectedQuestion: selectedQuestion,
+	                position: pos,
+	                correctAnswer: selectedQuestion.correct.position,
+	                questionsDisabled: null,
+	                valueSuccess: valueSuccess,
+	                valueError: valueError,
+	                point: temporarilyPoint
+	            });
+	        }
+	    }, {
+	        key: 'onItemSelectHelp',
+	        value: function onItemSelectHelp(type) {}
+	    }, {
+	        key: 'onDisableQuestions',
+	        value: function onDisableQuestions(optChosen) {
+	            this.setState({ questionsDisabled: optChosen });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(_toolbar2.default, null),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'content' },
+	                    _react2.default.createElement(_questionTitle2.default, { position: this.state.position, questionData: this.state.selectedQuestion, nextQuestion: this.nextQuestion }),
+	                    _react2.default.createElement(_progressBar2.default, { valueSuccess: this.state.valueSuccess, valueError: this.state.valueError }),
+	                    _react2.default.createElement(_questionList2.default, {
+	                        onItemSelect: function onItemSelect(selectedQuestion, pos, valueSuccess, valueError, isGainedPoint) {
+	                            return _this2.onInputChange(selectedQuestion, pos, valueSuccess, valueError, isGainedPoint);
+	                        },
+	                        questions: this.state.questions,
+	                        position: this.state.position,
+	                        correctAnswer: this.state.correctAnswer,
+	                        questionData: this.state.selectedQuestion,
+	                        point: this.state.point,
+	                        valueSuccess: this.state.valueSuccess,
+	                        valueError: this.state.valueError,
+	                        questionsDisabled: this.state.questionsDisabled }),
+	                    _react2.default.createElement(_questionHelp2.default, {
+	                        onItemSelectHelp: function onItemSelectHelp(type) {
+	                            return _this2.onItemSelectHelp(type);
+	                        },
+	                        questions: this.state.questions,
+	                        correctAnswer: this.state.correctAnswer,
+	                        selectedQuestion: this.state.selectedQuestion,
+	                        onDisableQuestions: function onDisableQuestions(optChosen) {
+	                            return _this2.onDisableQuestions(optChosen);
+	                        } }),
+	                    _react2.default.createElement(_questionMoney2.default, { point: this.state.point })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Content;
+	}(_react.Component);
+
+	exports.default = Content;
+
+/***/ },
+/* 165 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var QuestionTitle = function QuestionTitle(_ref) {
+	    var questionData = _ref.questionData,
+	        position = _ref.position;
+
+
+	    var pos = position + 1;
+
+	    return _react2.default.createElement(
+	        "div",
+	        { className: "col-xs-12 col-md-12 col-sm-12 col-lg-12" },
+	        _react2.default.createElement(
+	            "div",
+	            { className: "card" },
+	            _react2.default.createElement(
+	                "h5",
+	                null,
+	                pos + ". " + questionData.question
+	            )
+	        )
+	    );
+	};
+
+	exports.default = QuestionTitle;
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _questionItem = __webpack_require__(167);
+
+	var _questionItem2 = _interopRequireDefault(_questionItem);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var QuestionList = function QuestionList(props) {
+
+	    var countQuestionDisabled = 0;
+
+	    var renderQuestion = function renderQuestion(item, index) {
+	        return _react2.default.createElement(_questionItem2.default, {
+	            onItemSelect: props.onItemSelect,
+	            questions: props.questions,
+	            position: props.position,
+	            correctAnswer: props.correctAnswer,
+	            questionsDisabled: props.questionsDisabled,
+	            valueError: props.valueError,
+	            valueSuccess: props.valueSuccess,
+	            point: props.point,
+	            key: item,
+	            target: index,
+	            item: item });
+	    };
+
+	    var renderQuestionDisabled = function renderQuestionDisabled(questionsDisabled, item, index) {
+	        questionsDisabled = parseInt(props.questionsDisabled, 10);
+	        if (countQuestionDisabled < questionsDisabled && index !== props.correctAnswer) {
+	            countQuestionDisabled++;
+	            return _react2.default.createElement(_questionItem2.default, {
+	                disabled: true,
+	                onItemSelect: props.onItemSelect,
+	                questions: props.questions,
+	                position: props.position,
+	                correctAnswer: props.correctAnswer,
+	                questionsDisabled: props.questionsDisabled,
+	                key: item,
+	                valueError: props.valueError,
+	                valueSuccess: props.valueSuccess,
+	                point: props.point,
+	                target: index,
+	                item: item });
+	        } else {
+	            return _react2.default.createElement(_questionItem2.default, {
+	                disabled: index === props.correctAnswer || countQuestionDisabled === questionsDisabled ? false : true,
+	                onItemSelect: props.onItemSelect,
+	                questions: props.questions,
+	                position: props.position,
+	                correctAnswer: props.correctAnswer,
+	                questionsDisabled: props.questionsDisabled,
+	                valueError: props.valueError,
+	                valueSuccess: props.valueSuccess,
+	                point: props.point,
+	                key: item,
+	                target: index,
+	                item: item });
+	        }
+	    };
+
+	    var questionAnswers = props.questionData.choice.map(function (item, index) {
+	        return !props.questionsDisabled ? renderQuestion(item, index) : renderQuestionDisabled(props.questionsDisabled, item, index);
+	    });
+
+	    /*const incrementPos = () => {
+	        let newPos = props.position + 1;
+	        props.onItemSelect(props.questions[newPos], newPos);
+	    };*/
+
+	    return _react2.default.createElement(
+	        'div',
+	        { className: 'col-xs-12 col-sm-12 col-md-6 col-lg-6' },
+	        _react2.default.createElement(
+	            'div',
+	            { className: 'card' },
+	            _react2.default.createElement(
+	                'ul',
+	                { className: 'list' },
+	                questionAnswers
+	            )
+	        )
+	    );
+	};
+
+	exports.default = QuestionList;
+
+/***/ },
+/* 167 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _dialog = __webpack_require__(168);
+
+	var _dialog2 = _interopRequireDefault(_dialog);
+
+	var _general_constant = __webpack_require__(162);
+
+	var _general_constant2 = _interopRequireDefault(_general_constant);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var QuestionItem = function (_Component) {
+	    _inherits(QuestionItem, _Component);
+
+	    function QuestionItem(props) {
+	        _classCallCheck(this, QuestionItem);
+
+	        var _this = _possibleConstructorReturn(this, (QuestionItem.__proto__ || Object.getPrototypeOf(QuestionItem)).call(this, props));
+
+	        _this.state = {
+	            showPromptDialog: false,
+	            showDialog: false,
+	            message: '',
+	            isAnswerOk: false,
+	            showAnswerCorrect: false,
+	            showGameOver: false
+	        };
+	        return _this;
+	    }
+
+	    _createClass(QuestionItem, [{
+	        key: 'checkAnswer',
+	        value: function checkAnswer(answerClicked, correctAnswer) {
+	            return answerClicked == correctAnswer ? true : false;
+	        }
+	    }, {
+	        key: 'openConfirmationDialog',
+	        value: function openConfirmationDialog() {
+	            this.setState({ showPromptDialog: true, message: _general_constant2.default.DO_YOU_HAVE_SURE_THE_ANSWER });
+	        }
+	    }, {
+	        key: 'incrementPos',
+	        value: function incrementPos(event) {
+	            var answerClicked = parseInt(event.target.getAttribute('target'), 10);
+	            var correctAnswer = this.props.correctAnswer;
+	            var isAnswerOk = this.checkAnswer(answerClicked, correctAnswer);
+	            this.setState({ isAnswerOk: isAnswerOk });
+	            this.openConfirmationDialog();
+	        }
+	    }, {
+	        key: 'callbackYes',
+	        value: function callbackYes() {
+	            var newPos = this.props.position + 1;
+	            var valueSuccess = this.state.isAnswerOk ? this.props.valueSuccess + 1 : this.props.valueSuccess;
+	            var valueError = !this.state.isAnswerOk ? this.props.valueError + 1 : this.props.valueError;
+	            if (newPos === this.props.questions.length) {
+	                this.setState({
+	                    showDialog: false,
+	                    showPromptDialog: false,
+	                    showGameOver: true
+	                });
+	                return;
+	            }
+	            this.props.onItemSelect(this.props.questions[newPos], newPos, valueSuccess, valueError, this.state.isAnswerOk);
+	        }
+	    }, {
+	        key: 'callbackNo',
+	        value: function callbackNo() {
+	            this.setState({ showPromptDialog: false });
+	        }
+	    }, {
+	        key: 'callbackGameOver',
+	        value: function callbackGameOver() {
+	            var that = this;
+	            var position = this.props.position;
+	            var item = this.props.questions[position];
+	            var options = ['a', 'b', 'c', 'd'];
+	            var message = 'A resposta correta \xE9 o item(' + options[item.correct.position] + ') - ' + item.correct.desc + '.';
+	            that.setState({ showDialog: true, message: message });
+	        }
+	    }, {
+	        key: 'processAnswer',
+	        value: function processAnswer() {
+	            this.state.isAnswerOk ? this.callbackYes() : this.callbackGameOver();
+	        }
+	    }, {
+	        key: 'renderGameOver',
+	        value: function renderGameOver() {
+	            return _react2.default.createElement(_dialog2.default, { point: this.props.point, type: _general_constant2.default.dialog.NORMAL, valueSuccess: this.props.valueSuccess, valueError: this.props.valueError, showScoreFinal: true, message: _general_constant2.default.FINISH_GAME, description: _general_constant2.default.CONGRATULATIONS });
+	        }
+	    }, {
+	        key: 'renderDialogNormal',
+	        value: function renderDialogNormal(isTryAgain) {
+	            var _this2 = this;
+
+	            return _react2.default.createElement(_dialog2.default, { clickCallback: function clickCallback() {
+	                    _this2.callbackYes();
+	                }, type: _general_constant2.default.dialog.NORMAL, showMsgTryAgain: isTryAgain, message: this.state.message });
+	        }
+	    }, {
+	        key: 'renderDialogPrompt',
+	        value: function renderDialogPrompt() {
+	            var _this3 = this;
+
+	            return _react2.default.createElement(_dialog2.default, { type: _general_constant2.default.dialog.PROMPT,
+	                callbackYes: function callbackYes() {
+	                    _this3.processAnswer();
+	                },
+	                callbackNo: function callbackNo() {
+	                    _this3.callbackNo();
+	                },
+	                message: this.state.message });
+	        }
+	    }, {
+	        key: 'renderList',
+	        value: function renderList() {
+	            var _this4 = this;
+
+	            return _react2.default.createElement(
+	                'li',
+	                { onClick: function onClick(event) {
+	                        return _this4.incrementPos(event);
+	                    },
+	                    target: this.props.target,
+	                    className: 'listItem' },
+	                this.props.item
+	            );
+	        }
+	    }, {
+	        key: 'renderListDisabled',
+	        value: function renderListDisabled() {
+	            return _react2.default.createElement(
+	                'li',
+	                { className: 'listItemDisabled' },
+	                this.props.item
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this.state.showGameOver ? this.renderGameOver() : '',
+	                this.state.showPromptDialog ? this.renderDialogPrompt() : '',
+	                this.state.showDialog ? this.renderDialogNormal(true) : '',
+	                this.props.disabled ? this.renderListDisabled() : this.renderList()
+	            );
+	        }
+	    }]);
+
+	    return QuestionItem;
+	}(_react.Component);
+
+	exports.default = QuestionItem;
+
+/***/ },
+/* 168 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -20066,7 +20649,7 @@
 
 	var _button2 = _interopRequireDefault(_button);
 
-	var _brain = __webpack_require__(164);
+	var _brain = __webpack_require__(169);
 
 	var _brain2 = _interopRequireDefault(_brain);
 
@@ -20234,7 +20817,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_button2.default, { btnType: 'btn', title: 'carregando pr\xF3xima pergunta...' })
+	                _react2.default.createElement(_button2.default, { btnType: 'btn', title: 'Pr\xF3xima pergunta', clickCallback: this.props.clickCallback })
 	            );
 	        }
 	    }, {
@@ -20276,40 +20859,49 @@
 	    }, {
 	        key: 'getContentScore',
 	        value: function getContentScore() {
-	            var that = this;
+	            var ranking = localStorage.getItem('ranking.quizz.game');
+	            var positionFinal = void 0;
+	            if (ranking) {
+	                ranking = JSON.parse(ranking);
+	                positionFinal = ranking.sort(function (a, b) {
+	                    return b.value - a.value;
+	                });
+	            }
+	            var renderRanking = function renderRanking() {
+	                positionFinal = positionFinal.slice(0, 3);
+	                return positionFinal.map(function (position) {
+	                    return _react2.default.createElement(
+	                        'li',
+	                        { className: 'rankingList' },
+	                        position.name,
+	                        ' : ',
+	                        position.value
+	                    );
+	                });
+	            };
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'col-xs-12' },
 	                _react2.default.createElement(
-	                    'ol',
+	                    'ul',
 	                    null,
 	                    _react2.default.createElement(
 	                        'li',
 	                        { className: 'rankingList' },
-	                        'dffs'
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'pointFinal' },
+	                            'Pontua\xE7\xE3o Final: ',
+	                            this.props.point
+	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'li',
-	                        { className: 'rankingList' },
-	                        'dffs'
+	                        { className: 'rankingList center' },
+	                        'Ranking:'
 	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        { className: 'rankingList' },
-	                        'dffs'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        { className: 'rankingList' },
-	                        'dffs'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        { className: 'rankingList' },
-	                        'dffs'
-	                    )
-	                ),
-	                that.getLoseContent()
+	                    renderRanking()
+	                )
 	            );
 	        }
 	    }, {
@@ -20327,7 +20919,12 @@
 	                        null,
 	                        this.props.message
 	                    ),
-	                    this.props.showMsgTryAgain ? '' : '',
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'center' },
+	                        this.props.description
+	                    ),
+	                    this.props.showScoreFinal ? this.getContentScore() : '',
 	                    this.props.showMsgTryAgain ? this.getLoseContent() : '',
 	                    _react2.default.createElement(
 	                        'div',
@@ -20360,7 +20957,7 @@
 	exports.default = Dialog;
 
 /***/ },
-/* 164 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20369,11 +20966,11 @@
 	    value: true
 	});
 
-	var _dataQuestions = __webpack_require__(165);
+	var _dataQuestions = __webpack_require__(170);
 
 	var _dataQuestions2 = _interopRequireDefault(_dataQuestions);
 
-	var _career = __webpack_require__(166);
+	var _career = __webpack_require__(171);
 
 	var _career2 = _interopRequireDefault(_career);
 
@@ -20486,7 +21083,7 @@
 	exports.default = { brainQuestions: brainQuestions, shuffleList: shuffleList, wrongOrCorrect: wrongOrCorrect, getGuessProfessionalCareer: getGuessProfessionalCareer };
 
 /***/ },
-/* 165 */
+/* 170 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20559,7 +21156,7 @@
 	exports.default = { QUIZZ_OBJ: QUIZZ_OBJ };
 
 /***/ },
-/* 166 */
+/* 171 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20576,444 +21173,7 @@
 	exports.default = { getCareers: getCareers };
 
 /***/ },
-/* 167 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _questionTitle = __webpack_require__(168);
-
-	var _questionTitle2 = _interopRequireDefault(_questionTitle);
-
-	var _questionList = __webpack_require__(169);
-
-	var _questionList2 = _interopRequireDefault(_questionList);
-
-	var _questionHelp = __webpack_require__(171);
-
-	var _questionHelp2 = _interopRequireDefault(_questionHelp);
-
-	var _brain = __webpack_require__(164);
-
-	var _brain2 = _interopRequireDefault(_brain);
-
-	var _toolbar = __webpack_require__(172);
-
-	var _toolbar2 = _interopRequireDefault(_toolbar);
-
-	var _questionMoney = __webpack_require__(173);
-
-	var _questionMoney2 = _interopRequireDefault(_questionMoney);
-
-	var _progressBar = __webpack_require__(174);
-
-	var _progressBar2 = _interopRequireDefault(_progressBar);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Content = function (_Component) {
-	    _inherits(Content, _Component);
-
-	    function Content(props) {
-	        _classCallCheck(this, Content);
-
-	        var _this = _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
-
-	        var START_POSITION = 0;
-	        _this.state = {
-	            questions: _brain2.default.brainQuestions,
-	            selectedQuestion: _brain2.default.brainQuestions[START_POSITION],
-	            position: START_POSITION,
-	            correctAnswer: _brain2.default.brainQuestions[START_POSITION].correct.position,
-	            questionsDisabled: null,
-	            valueSuccess: 0,
-	            valueError: 0
-	        };
-	        return _this;
-	    }
-
-	    _createClass(Content, [{
-	        key: 'onInputChange',
-	        value: function onInputChange(selectedQuestion, pos, valueSuccess, valueError) {
-	            this.setState({
-	                selectedQuestion: selectedQuestion,
-	                position: pos,
-	                correctAnswer: selectedQuestion.correct.position,
-	                questionsDisabled: null,
-	                valueSuccess: valueSuccess,
-	                valueError: valueError
-	            });
-	        }
-	    }, {
-	        key: 'onItemSelectHelp',
-	        value: function onItemSelectHelp(type) {}
-	    }, {
-	        key: 'onDisableQuestions',
-	        value: function onDisableQuestions(optChosen) {
-	            this.setState({ questionsDisabled: optChosen });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(_toolbar2.default, null),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'content' },
-	                    _react2.default.createElement(_questionTitle2.default, { position: this.state.position, questionData: this.state.selectedQuestion, nextQuestion: this.nextQuestion }),
-	                    _react2.default.createElement(_progressBar2.default, { valueSuccess: this.state.valueSuccess, valueError: this.state.valueError }),
-	                    _react2.default.createElement(_questionList2.default, {
-	                        onItemSelect: function onItemSelect(selectedQuestion, pos, valueSuccess, valueError) {
-	                            return _this2.onInputChange(selectedQuestion, pos, valueSuccess, valueError);
-	                        },
-	                        questions: this.state.questions,
-	                        position: this.state.position,
-	                        correctAnswer: this.state.correctAnswer,
-	                        questionData: this.state.selectedQuestion,
-	                        valueSuccess: this.state.valueSuccess,
-	                        valueError: this.state.valueError,
-	                        questionsDisabled: this.state.questionsDisabled }),
-	                    _react2.default.createElement(_questionHelp2.default, {
-	                        onItemSelectHelp: function onItemSelectHelp(type) {
-	                            return _this2.onItemSelectHelp(type);
-	                        },
-	                        questions: this.state.questions,
-	                        correctAnswer: this.state.correctAnswer,
-	                        selectedQuestion: this.state.selectedQuestion,
-	                        onDisableQuestions: function onDisableQuestions(optChosen) {
-	                            return _this2.onDisableQuestions(optChosen);
-	                        } }),
-	                    _react2.default.createElement(_questionMoney2.default, null)
-	                )
-	            );
-	        }
-	    }]);
-
-	    return Content;
-	}(_react.Component);
-
-	exports.default = Content;
-
-/***/ },
-/* 168 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var QuestionTitle = function QuestionTitle(_ref) {
-	    var questionData = _ref.questionData,
-	        position = _ref.position;
-
-
-	    var pos = position + 1;
-
-	    return _react2.default.createElement(
-	        "div",
-	        { className: "col-xs-12 col-md-12 col-sm-12 col-lg-12" },
-	        _react2.default.createElement(
-	            "div",
-	            { className: "card" },
-	            _react2.default.createElement(
-	                "h5",
-	                null,
-	                pos + ". " + questionData.question
-	            )
-	        )
-	    );
-	};
-
-	exports.default = QuestionTitle;
-
-/***/ },
-/* 169 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _questionItem = __webpack_require__(170);
-
-	var _questionItem2 = _interopRequireDefault(_questionItem);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var QuestionList = function QuestionList(props) {
-
-	    var countQuestionDisabled = 0;
-
-	    var renderQuestion = function renderQuestion(item, index) {
-	        return _react2.default.createElement(_questionItem2.default, {
-	            onItemSelect: props.onItemSelect,
-	            questions: props.questions,
-	            position: props.position,
-	            correctAnswer: props.correctAnswer,
-	            questionsDisabled: props.questionsDisabled,
-	            valueError: props.valueError,
-	            valueSuccess: props.valueSuccess,
-	            key: item,
-	            target: index,
-	            item: item });
-	    };
-
-	    var renderQuestionDisabled = function renderQuestionDisabled(questionsDisabled, item, index) {
-	        questionsDisabled = parseInt(props.questionsDisabled, 10);
-	        if (countQuestionDisabled < questionsDisabled && index !== props.correctAnswer) {
-	            countQuestionDisabled++;
-	            return _react2.default.createElement(_questionItem2.default, {
-	                disabled: true,
-	                onItemSelect: props.onItemSelect,
-	                questions: props.questions,
-	                position: props.position,
-	                correctAnswer: props.correctAnswer,
-	                questionsDisabled: props.questionsDisabled,
-	                key: item,
-	                valueError: props.valueError,
-	                valueSuccess: props.valueSuccess,
-	                target: index,
-	                item: item });
-	        } else {
-	            return _react2.default.createElement(_questionItem2.default, {
-	                disabled: index === props.correctAnswer || countQuestionDisabled === questionsDisabled ? false : true,
-	                onItemSelect: props.onItemSelect,
-	                questions: props.questions,
-	                position: props.position,
-	                correctAnswer: props.correctAnswer,
-	                questionsDisabled: props.questionsDisabled,
-	                valueError: props.valueError,
-	                valueSuccess: props.valueSuccess,
-	                key: item,
-	                target: index,
-	                item: item });
-	        }
-	    };
-
-	    var questionAnswers = props.questionData.choice.map(function (item, index) {
-	        return !props.questionsDisabled ? renderQuestion(item, index) : renderQuestionDisabled(props.questionsDisabled, item, index);
-	    });
-
-	    /*const incrementPos = () => {
-	        let newPos = props.position + 1;
-	        props.onItemSelect(props.questions[newPos], newPos);
-	    };*/
-
-	    return _react2.default.createElement(
-	        'div',
-	        { className: 'col-xs-12 col-sm-12 col-md-6 col-lg-6' },
-	        _react2.default.createElement(
-	            'div',
-	            { className: 'card' },
-	            _react2.default.createElement(
-	                'ul',
-	                { className: 'list' },
-	                questionAnswers
-	            )
-	        )
-	    );
-	};
-
-	exports.default = QuestionList;
-
-/***/ },
-/* 170 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _dialog = __webpack_require__(163);
-
-	var _dialog2 = _interopRequireDefault(_dialog);
-
-	var _general_constant = __webpack_require__(162);
-
-	var _general_constant2 = _interopRequireDefault(_general_constant);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var QuestionItem = function (_Component) {
-	    _inherits(QuestionItem, _Component);
-
-	    function QuestionItem(props) {
-	        _classCallCheck(this, QuestionItem);
-
-	        var _this = _possibleConstructorReturn(this, (QuestionItem.__proto__ || Object.getPrototypeOf(QuestionItem)).call(this, props));
-
-	        _this.state = {
-	            showPromptDialog: false,
-	            showDialog: false,
-	            message: '',
-	            isAnswerOk: false,
-	            showAnswerCorrect: false
-	        };
-	        return _this;
-	    }
-
-	    _createClass(QuestionItem, [{
-	        key: 'checkAnswer',
-	        value: function checkAnswer(answerClicked, correctAnswer) {
-	            return answerClicked == correctAnswer ? true : false;
-	        }
-	    }, {
-	        key: 'openConfirmationDialog',
-	        value: function openConfirmationDialog() {
-	            this.setState({ showPromptDialog: true, message: _general_constant2.default.DO_YOU_HAVE_SURE_THE_ANSWER });
-	        }
-	    }, {
-	        key: 'incrementPos',
-	        value: function incrementPos(event) {
-	            //this.props.questionsDisabled = null;
-	            var answerClicked = parseInt(event.target.getAttribute('target'), 10);
-	            var correctAnswer = this.props.correctAnswer;
-	            var isAnswerOk = this.checkAnswer(answerClicked, correctAnswer);
-	            this.setState({ isAnswerOk: isAnswerOk });
-	            this.openConfirmationDialog();
-	        }
-	    }, {
-	        key: 'callbackYes',
-	        value: function callbackYes() {
-	            var newPos = this.props.position + 1;
-	            var valueSuccess = this.state.isAnswerOk ? this.props.valueSuccess + 1 : this.props.valueSuccess;
-	            var valueError = !this.state.isAnswerOk ? this.props.valueError + 1 : this.props.valueError;
-	            this.props.onItemSelect(this.props.questions[newPos], newPos, valueSuccess, valueError);
-	        }
-	    }, {
-	        key: 'callbackNo',
-	        value: function callbackNo() {
-	            this.setState({ showPromptDialog: false });
-	        }
-	    }, {
-	        key: 'callbackGameOver',
-	        value: function callbackGameOver() {
-	            var that = this;
-	            var position = this.props.position;
-	            var item = this.props.questions[position];
-	            var options = ['a', 'b', 'c', 'd'];
-	            var message = 'A resposta correta \xE9 o item(' + options[item.correct.position] + ') - ' + item.correct.desc + '.';
-	            that.setState({ showDialog: true, message: message });
-	            setTimeout(function () {
-	                that.callbackYes();
-	            }, 2000);
-	        }
-	    }, {
-	        key: 'processAnswer',
-	        value: function processAnswer() {
-	            this.state.isAnswerOk ? this.callbackYes() : this.callbackGameOver();
-	        }
-	    }, {
-	        key: 'renderDialogNormal',
-	        value: function renderDialogNormal(isTryAgain) {
-	            return _react2.default.createElement(_dialog2.default, { type: _general_constant2.default.dialog.NORMAL, showMsgTryAgain: isTryAgain, message: this.state.message });
-	        }
-	    }, {
-	        key: 'renderDialogPrompt',
-	        value: function renderDialogPrompt() {
-	            var _this2 = this;
-
-	            return _react2.default.createElement(_dialog2.default, { type: _general_constant2.default.dialog.PROMPT,
-	                callbackYes: function callbackYes() {
-	                    _this2.processAnswer();
-	                },
-	                callbackNo: function callbackNo() {
-	                    _this2.callbackNo();
-	                },
-	                message: this.state.message });
-	        }
-	    }, {
-	        key: 'renderList',
-	        value: function renderList() {
-	            var _this3 = this;
-
-	            return _react2.default.createElement(
-	                'li',
-	                { onClick: function onClick(event) {
-	                        return _this3.incrementPos(event);
-	                    },
-	                    target: this.props.target,
-	                    className: 'listItem' },
-	                this.props.item
-	            );
-	        }
-	    }, {
-	        key: 'renderListDisabled',
-	        value: function renderListDisabled() {
-	            return _react2.default.createElement(
-	                'li',
-	                { className: 'listItemDisabled' },
-	                this.props.item
-	            );
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                this.state.showPromptDialog ? this.renderDialogPrompt() : '',
-	                this.state.showDialog ? this.renderDialogNormal(true) : '',
-	                this.props.disabled ? this.renderListDisabled() : this.renderList()
-	            );
-	        }
-	    }]);
-
-	    return QuestionItem;
-	}(_react.Component);
-
-	exports.default = QuestionItem;
-
-/***/ },
-/* 171 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21036,7 +21196,7 @@
 
 	var _button2 = _interopRequireDefault(_button);
 
-	var _dialog = __webpack_require__(163);
+	var _dialog = __webpack_require__(168);
 
 	var _dialog2 = _interopRequireDefault(_dialog);
 
@@ -21208,7 +21368,7 @@
 	exports.default = QuestionHelp;
 
 /***/ },
-/* 172 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21235,7 +21395,7 @@
 	exports.default = Toolbar;
 
 /***/ },
-/* 173 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21256,21 +21416,30 @@
 
 	var _button2 = _interopRequireDefault(_button);
 
-	var _dialog = __webpack_require__(163);
+	var _dialog = __webpack_require__(168);
 
 	var _dialog2 = _interopRequireDefault(_dialog);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var QuestionMoney = function QuestionMoney() {
+	var QuestionMoney = function QuestionMoney(props) {
 
 	    return _react2.default.createElement(
 	        'div',
 	        { className: 'col-xs-12 col-sm-12 col-md-6 col-lg-6' },
 	        _react2.default.createElement(
 	            'div',
-	            { className: 'card' },
-	            'Money'
+	            { className: 'card points' },
+	            _react2.default.createElement(
+	                'h6',
+	                null,
+	                _general_constant2.default.POINTS
+	            ),
+	            _react2.default.createElement(
+	                'p',
+	                null,
+	                props.point
+	            )
 	        )
 	    );
 	};
@@ -21278,7 +21447,7 @@
 	exports.default = QuestionMoney;
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
