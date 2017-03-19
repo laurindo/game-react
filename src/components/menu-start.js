@@ -27,10 +27,15 @@ export default class MenuStart extends Component {
         return (
             <div className="startPage">
                 <div className="menuStart">
-                    <img src="/images/logo.png" />
-                    <Button title={GeneralConstant.button.START} 
-                        btnType="btnStart" 
-                        clickCallback={this.props.showMenuStart} />
+                    <div>
+                        <img src="/images/logo.png" />
+                    </div>
+                    <div>
+                        <input type="text" name="" placeholder="Digite seu nome" onChange={this.props.changeName} />
+                        <Button title={GeneralConstant.button.START} 
+                            btnType="btnStart" 
+                            clickCallback={this.props.showMenuStart} />
+                    </div>
                 </div>
                 <a onClick={ () => { this.showDialog() } } href="#">{GeneralConstant.ABOUT_GAME_TITLE}</a>
                 {this.state.aboutGame ? <AboutGame closeDialog={() => { this.hideDialog() }} message={GeneralConstant.ABOUT_GAME} /> : ''}

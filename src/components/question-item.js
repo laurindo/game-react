@@ -31,7 +31,7 @@ class QuestionItem extends Component {
         let newPos = this.props.position + 1;
         let valueSuccess = this.state.isAnswerOk ? this.props.valueSuccess + 1 : this.props.valueSuccess;
         let valueError = !this.state.isAnswerOk ? this.props.valueError + 1 : this.props.valueError;
-        if (newPos === 1) {
+        if (newPos === this.props.questions.length) {
             this.setState({
                 showDialog: false,
                 showPromptDialog: false,
@@ -57,7 +57,7 @@ class QuestionItem extends Component {
     }
     renderGameOver() {
         return (
-            <Dialog type={ConstantGeneral.dialog.NORMAL} showScoreFinal={true} message={ConstantGeneral.FINISH_GAME} description={ConstantGeneral.CONGRATULATIONS} />
+            <Dialog point={this.props.point} type={ConstantGeneral.dialog.NORMAL} valueSuccess={this.props.valueSuccess} valueError={this.props.valueError} showScoreFinal={true} message={ConstantGeneral.FINISH_GAME} description={ConstantGeneral.CONGRATULATIONS} />
         );
     }
     renderDialogNormal(isTryAgain) {

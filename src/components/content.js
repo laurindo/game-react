@@ -26,9 +26,16 @@ export default class Content extends Component {
     }
 
     onInputChange (selectedQuestion, pos, valueSuccess, valueError, isPointGained) {
+        let ranking = localStorage.getItem('ranking.quizz.game');
         let temporarilyPoint = this.state.point;
         if (isPointGained) {
             temporarilyPoint = temporarilyPoint + 50;
+        }
+        
+        if (ranking) {
+            ranking = JSON.parse(ranking);
+            ranking[ranking.length-1].value = temporarilyPoint;
+            localStorage.setItem('ranking.quizz.game', JSON.stringify(ranking));
         }
         this.setState({
             selectedQuestion: selectedQuestion, 
@@ -61,6 +68,7 @@ export default class Content extends Component {
                         position={this.state.position}
                         correctAnswer={this.state.correctAnswer}
                         questionData={this.state.selectedQuestion}
+                        point={this.state.point}
                         valueSuccess={this.state.valueSuccess}
                         valueError={this.state.valueError}
                         questionsDisabled={this.state.questionsDisabled} />

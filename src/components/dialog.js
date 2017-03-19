@@ -139,12 +139,29 @@ class Dialog extends Component {
     }
 
     getContentScore() {
+        let ranking = localStorage.getItem('ranking.quizz.game');
+        let positionFinal;
+        if (ranking) {
+            ranking = JSON.parse(ranking);
+            positionFinal = ranking.sort(function(a, b) {
+                return b.value - a.value;
+            })
+        }
+        let renderRanking = () => {
+            positionFinal = positionFinal.slice(0, 3);
+            return positionFinal.map((position) => { 
+                return (
+                    <li className="rankingList">{position.name} : {position.value}</li>
+                );
+            });
+        }
         return (
             <div className="col-xs-12">
-                <ol>
-                    <li className="rankingList">Acertos: </li>
-                    <li className="rankingList">Erros: </li>
-                </ol>
+                <ul>
+                    <li className="rankingList"><div className="pointFinal">Pontuação Final: {this.props.point}</div></li>
+                    <li className="rankingList center">Ranking:</li>
+                    {renderRanking()}
+                </ul>
             </div>
         );
     };
