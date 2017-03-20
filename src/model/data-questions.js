@@ -73,7 +73,68 @@ var QUIZZ_OBJ = [
         "question": "Processo aplicado para superfícies inertes, que elimina micro-organismos na forma vegetativa, Exceto esporos:",
         "choice": ["(a) Desinfeção", "(b) Descontaminação", "(c) Esterilização", "(d) Antissepsia"],  //quizObj[2].choice[0],quizObj[2].choice[1]
         "correct": {position: 0, item: 'a', desc: 'Desinfeção'}
+   },
+   { 
+        "question": "Comadres, papagaios, cubas e termômetros são exemplos de:",
+        "choice": ["(a) Artigos críticos", "(b) Semi-críticos", "(c) Não-críticos", "(d) Artigos de uso único"],  //quizObj[2].choice[0],quizObj[2].choice[1]
+        "correct": {position: 2, item: 'c', desc: 'não-críticos'}
+   },
+   { 
+        "question": "Precisam ser esterelizados para o uso no paciente:",
+        "choice": ["(a) Artigos críticos", "(b) Semi-críticos", "(c) Não-críticos", "(d) Artigos de uso único"],  //quizObj[2].choice[0],quizObj[2].choice[1]
+        "correct": {position: 0, item: 'a', desc: 'artigos críticos'}
+   },
+   { 
+        "question": "De acordo com a Resolução - RDC nº 15, de 15 de março de 2012, que dispõe sobre requisitos de boas práticas para o processamento de produtos para saúde, analise as afirmativas abaixo, e assinale a resposta mais adequada sobre as informações de manutenção dos equipamentos da CME:",
+        "choice": ["(a) Não tem necessidade de  descrição do problema detectado", "(b) Descrição do serviço realizado, excluindo informações sobre as peças trocadas", "(c) Resultados da avaliação dos parâmetros físicos realizados após a intervenção e complementados com indicadores químicos e biológicos, quando indicado", "(d) Nome do profissional que acompanhou a intervenção e desnecessário do técnico que executou o procedimento"], 
+        "correct": {position: 2, item: 'c', desc: 'Resultados da avaliação dos parâmetros físicos realizados após a intervenção e complementados com indicadores químicos e biológicos, quando indicado'}
+   },
+   { 
+        "question": "Em relação a desinfecção de artigos não - críticos,  é INCORRETO afirmar:",
+        "choice": ["(a) é recomendada desinfecção de baixo nível ", "(b) na maioria dos casos o uso de água e sabão é o suficiente", "(c) a utilização de lavadoras não é recomendada", "(d) são considerados artigos não críticos;  comadre, papagaio, bacias etc"], 
+        "correct": {position: 2, item: 'c', desc: 'a utilização de lavadoras não é recomendada'}
+   },
+   { 
+        "question": "Assinale a alternativa correta. Os circuitos de respiradores devem passar por desinfecção:",
+        "choice": ["(a) de baixo nível, pois o arquivo não é estéril", "(b) a esterilização por calor seco é mais indicada", "(c) os circuitos de respiradores devem passar por desinfecção diariamente", "(d) nenhuma alternativa está correta"], 
+        "correct": {position: 3, item: 'd', desc: 'nenhuma alternativa está correta'}
+   },
+   { 
+        "question": "Quanto tempo a mesa de instrumental pode ficar montada na SO antes do início do procedimento cirúrgico?",
+        "choice": ["(a) 1 hora", "(b) 2 horas", "(c) Não há determinação de tempo. Porém deve-se utilizar o material aberto no  menor tempo possível", "(d) 3 horas"], 
+        "correct": {position: 2, item: 'c', desc: 'Não há determinação de tempo. Porém deve-se utilizar o material aberto no  menor tempo possível'}
+   },
+   { 
+        "question": "De acordo com a classificação de Spauding, o que é limpeza?",
+        "choice": ["(a) processo que visa a remoção de sugidade somente em artigos críticos", "(b) processo que visa a remoção somente em artigos semicriticos", "(c) processo que visa a remoção de sugidade visível e, por conseguinte a diminuição da carga microbiana", "(d) processo que visa a remoção de sugidade somente em artigos não críticos"], 
+        "correct": {position: 2, item: 'c', desc: 'processo que visa a remoção de sugidade visível e, por conseguinte a diminuição da carga microbiana'}
+   },
+   { 
+        "question": "São características da central de materiais esterilizados, exceto a alternativa",
+        "choice": ["(a) permitir um fluxo contínuo e unidirecional dos materiais", "(b) o enfermeiro não faz parte do quadro de funcionários,  a supervisão é sempre do centro cirúrgico", "(c) é dividida em área suja, área limpa e área estéril", "(d) é responsável pela limpeza, preparo, esterilização, guarda e distribuição de material"], 
+        "correct": {position: 1, item: 'b', desc: 'o enfermeiro não faz parte do quadro de funcionários,  a supervisão é sempre do centro cirúrgico'}
+   },
+   { 
+        "question": "Agente que destrói formas vegetativas de bactérias:",
+        "choice": ["(a) desinfetante", "(b) antisséptico", "(c) fungicida", "(d) bactericida"], 
+        "correct": {position: 0, item: 'a', desc: 'desinfetante'}
+   },
+   { 
+        "question": "O que é esterilização? ",
+        "choice": ["(a) destruição de bactérias", "(b) destruição de todas as formas de vida microbiana por um processo que utiliza agentes químicos ou físicos, inclusive esporos", "(c) destruição do vírus da hepatite", "(d) destruição de vírus"], 
+        "correct": {position: 1, item: 'b', desc: 'destruição de todas as formas de vida microbiana por um processo que utiliza agentes químicos ou físicos, inclusive esporos'}
+   },
+   { 
+        "question": "A esterilização de óleos, pós e caixas de instrumental, quando realizada em estufa, é um processo que exige temperatura de:",
+        "choice": ["(a) 120ºC por 100 minutos", "(b) 120ºC por 120 minutos", "(c) 160ºC por 100 minutos", "(d) 160ºC por 120 minutos"], 
+        "correct": {position: 3, item: 'd', desc: '160ºC por 120 minutos'}
+   },
+   { 
+        "question": "Considerando os processos da Desinfecção Química dos produtos para saúde, assinale a alternativa correta:",
+        "choice": ["(a) A desinfecçao química deve ser realizadas apenas para artigos não críticos e pode ser realizada no Centro de Material Esterelizado(CME) ou no próprio setor de internação", "(b) Não é permitida a realização de desinfecção química no CME do serviço de saúde, sendo apenas realizada na empresa processadora terceirazada", "(c) O CME deve realizar a monitorização dos parâmetros indicadores de efetividade dos desinfetantes para artigo crítico, pH ou outros, no mínimo 1 vez por semana", "(d) O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento"], 
+        "correct": {position: 3, item: 'd', desc: 'O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento'}
    }
+   
 ];
 
 export default {QUIZZ_OBJ};
