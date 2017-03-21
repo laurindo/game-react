@@ -21199,6 +21199,22 @@
 	     "question": "Considerando os processos da Desinfecção Química dos produtos para saúde, assinale a alternativa correta:",
 	     "choice": ["(a) A desinfecçao química deve ser realizadas apenas para artigos não críticos e pode ser realizada no Centro de Material Esterelizado(CME) ou no próprio setor de internação", "(b) Não é permitida a realização de desinfecção química no CME do serviço de saúde, sendo apenas realizada na empresa processadora terceirazada", "(c) O CME deve realizar a monitorização dos parâmetros indicadores de efetividade dos desinfetantes para artigo crítico, pH ou outros, no mínimo 1 vez por semana", "(d) O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento"],
 	     "correct": { position: 3, item: 'd', desc: 'O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento' }
+	}, {
+	     "question": "Considerando os processos da Desinfecção Química dos produtos para saúde, assinale a alternativa correta:",
+	     "choice": ["(a) A desinfecçao química deve ser realizadas apenas para artigos não críticos e pode ser realizada no Centro de Material Esterelizado(CME) ou no próprio setor de internação", "(b) Não é permitida a realização de desinfecção química no CME do serviço de saúde, sendo apenas realizada na empresa processadora terceirazada", "(c) O CME deve realizar a monitorização dos parâmetros indicadores de efetividade dos desinfetantes para artigo crítico, pH ou outros, no mínimo 1 vez por semana", "(d) O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento"],
+	     "correct": { position: 3, item: 'd', desc: 'O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento' }
+	}, {
+	     "question": "Os processos de esterilização, desinfecções, limpeza e descontaminação são importantes para evitar a propagação de infecções, por meio de materiais e instrumentais cirúrgicos. O processo que possibilita a destruição dos micro-organismos patogênicos, sem q necessariamente sejam eliminados todos os patógenos pela a aplicação direta de meios físicos ou químicos, é denominado de:",
+	     "choice": ["(a) Esterilização", "(b) antissepsia", "(c) cadeia asséptica", "(d) desinfecção"],
+	     "correct": { position: 3, item: 'd', desc: 'desinfecção' }
+	}, {
+	     "question": "Qual a Resolução de Diretoria Colegiada que normatiza a Central de Material e Esterilização?",
+	     "choice": ["(a) RDC n 36 de 22 de julho de 2013", "(b) RDC n 06 de 30 de janeiro de 2012", "(c) RDC n 15 de 15 de março de 2012", "(d) RDC n 07 de 24 de fevereiro de 2010"],
+	     "correct": { position: 2, item: 'c', desc: 'RDC n 15 de 15 de março de 2012' }
+	}, {
+	     "question": "Qual o sistema de barreira estéril (embalagem) não é indicado para o método de esterilização de óxido de etileno?",
+	     "choice": ["(a) Papel Grau Cirúrgico", "(b) Tyvek", "(c) Contêiner rígido", "(d) Algodão Tecido"],
+	     "correct": { position: 3, item: 'd', desc: 'Algodão Tecido' }
 	}];
 
 	exports.default = { QUIZZ_OBJ: QUIZZ_OBJ };
