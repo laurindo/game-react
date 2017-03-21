@@ -68,7 +68,11 @@ let wrongOrCorrect = (props) => {
 
 let getGuessProfessionalCareer = () => {
     let rand = Math.floor(Math.random() * CAREERS.length - 1);
-    return CAREERS[rand];
+    if (rand > 0 || rand < CAREERS.length - 1) {
+        return CAREERS[rand];
+    } else {
+        return CAREERS[5];
+    }
 };
 
 let shuffleList = (array) => {

@@ -18,7 +18,7 @@ var CAREERS = [
     "Engenheiro Agrônomo",
     "Economista Doméstico",
     "Economista",
-    "Educacador Físico",
+    "Educador Físico",
     "Empregado Doméstico",
     "Enfermagem",
     "Enfermólogo",
