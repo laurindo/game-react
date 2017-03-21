@@ -21045,7 +21045,11 @@
 
 	var getGuessProfessionalCareer = function getGuessProfessionalCareer() {
 	    var rand = Math.floor(Math.random() * CAREERS.length - 1);
-	    return CAREERS[rand];
+	    if (rand > 0 || rand < CAREERS.length - 1) {
+	        return CAREERS[rand];
+	    } else {
+	        return CAREERS[5];
+	    }
 	};
 
 	var shuffleList = function shuffleList(array) {
@@ -21228,7 +21232,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	var CAREERS = ["Administrador", "Advogado", "Aeronauta", "Arquivista-Técnico de Arquivo", "Artista/Técnico em espetáculos de diversões", "Assistente Social", "Atleta Profissional de Futebol", "Bibliotecário'", "Biomédico", "Biólogo", "Bombeiro Civil", "Comerciário", "Contabilista", "Corretor de Imóveis", "Corretor de Seguros", "Despachante Aduaneiro", "Engenheiro Agrônomo", "Economista Doméstico", "Economista", "Educacador Físico", "Empregado Doméstico", "Enfermagem", "Enfermólogo", "Engenharia de Segurança", "Fisioterapeuta e Terapeuta Ocupacional", "Farmacêutico", "Fonoaudiólogo", "Garimpeiro", "Geógrafo", "Geólogo", "Guardador e Lavador de Veículos", "Instrutor de Trânsito", "Jornalista", "Leiloeiro", "Leiloeiro Rural", "Massagista", "Médico", "Museólogo", "Nutricionista", "Oceanógrafo", "Odontologia", "Orientador Educacional", "Pescador Profissional", "Psicologia", "Publicitário-Agenciador de Propaganda", "Químico", "Radialista", "Representantes Comerciais Autônomos", "Repentista", "Sociólogo", "Sommelier", "Taxista", "Tradutor e Intérprete da Língua Brasileira de Sinais - LIBRAS", "Técnico em Administração", "Técnico Industrial", "Técnico em Prótese Dentária", "Técnico em Radiologia", "Turismólogo", "Zootecnista"];
+	var CAREERS = ["Administrador", "Advogado", "Aeronauta", "Arquivista-Técnico de Arquivo", "Artista/Técnico em espetáculos de diversões", "Assistente Social", "Atleta Profissional de Futebol", "Bibliotecário'", "Biomédico", "Biólogo", "Bombeiro Civil", "Comerciário", "Contabilista", "Corretor de Imóveis", "Corretor de Seguros", "Despachante Aduaneiro", "Engenheiro Agrônomo", "Economista Doméstico", "Economista", "Educador Físico", "Empregado Doméstico", "Enfermagem", "Enfermólogo", "Engenharia de Segurança", "Fisioterapeuta e Terapeuta Ocupacional", "Farmacêutico", "Fonoaudiólogo", "Garimpeiro", "Geógrafo", "Geólogo", "Guardador e Lavador de Veículos", "Instrutor de Trânsito", "Jornalista", "Leiloeiro", "Leiloeiro Rural", "Massagista", "Médico", "Museólogo", "Nutricionista", "Oceanógrafo", "Odontologia", "Orientador Educacional", "Pescador Profissional", "Psicologia", "Publicitário-Agenciador de Propaganda", "Químico", "Radialista", "Representantes Comerciais Autônomos", "Repentista", "Sociólogo", "Sommelier", "Taxista", "Tradutor e Intérprete da Língua Brasileira de Sinais - LIBRAS", "Técnico em Administração", "Técnico Industrial", "Técnico em Prótese Dentária", "Técnico em Radiologia", "Turismólogo", "Zootecnista"];
 
 	var getCareers = function getCareers() {
 	    return CAREERS;
