@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Dialog from './dialog';
 import ConstantGeneral from '../constants/general_constant';
+import CoreBrain from '../core/brain';
 
 class QuestionItem extends Component {
     constructor(props) {
@@ -9,9 +10,11 @@ class QuestionItem extends Component {
             showPromptDialog: false,
             showDialog: false,
             message: '',
+            desc: '',
             isAnswerOk: false,
             showAnswerCorrect: false,
-            showGameOver: false
+            showGameOver: false,
+            winEasterEggs: false
         };
     }
     checkAnswer (answerClicked, correctAnswer) {
@@ -35,7 +38,8 @@ class QuestionItem extends Component {
             this.setState({
                 showDialog: false,
                 showPromptDialog: false,
-                showGameOver: true
+                showGameOver: true,
+                winEasterEggs: CoreBrain.goalAim(this.props.valueSuccess)
             });
             return;
         }
@@ -49,20 +53,30 @@ class QuestionItem extends Component {
         let position = this.props.position;
         let item = this.props.questions[position];
         let options = ['a', 'b', 'c', 'd'];
-        let message = `A resposta correta é o item(${options[item.correct.position]}) - ${item.correct.desc}.`;
-        that.setState({showDialog: true, message: message});
+        let message = `A resposta correta é o item(${options[item.correct.position]})`;
+        let desc = `${item.correct.desc}`;
+        that.setState({showDialog: true, message: message, desc: desc});
     }
     processAnswer() {
         this.state.isAnswerOk ? this.callbackYes() : this.callbackGameOver();
     }
     renderGameOver() {
+        var snd = new Audio("lose.ogg");
+        snd.play();
         return (
-            <Dialog point={this.props.point} type={ConstantGeneral.dialog.NORMAL} valueSuccess={this.props.valueSuccess} valueError={this.props.valueError} showScoreFinal={true} message={ConstantGeneral.FINISH_GAME} description={ConstantGeneral.CONGRATULATIONS} />
+            <Dialog point={this.props.point} 
+                type={ConstantGeneral.dialog.NORMAL} 
+                valueSuccess={this.props.valueSuccess} 
+                valueError={this.props.valueError} 
+                showScoreFinal={true} 
+                winEasterEggs={this.state.winEasterEggs}
+                message=''
+                description={ConstantGeneral.CONGRATULATIONS} />
         );
     }
     renderDialogNormal(isTryAgain) {
         return (
-            <Dialog clickCallback={() => { this.callbackYes() }} type={ConstantGeneral.dialog.NORMAL} showMsgTryAgain={isTryAgain} message={this.state.message} />
+            <Dialog clickCallback={() => { this.callbackYes() }} type={ConstantGeneral.dialog.NORMAL} showMsgTryAgain={isTryAgain} description={this.state.desc} message={this.state.message} />
         );
     }
     renderDialogPrompt() {

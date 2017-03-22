@@ -107,7 +107,9 @@ class Dialog extends Component {
     getLoseContent() {
         return (
             <div>
-                <Button btnType="btn" title="Próxima pergunta" clickCallback={this.props.clickCallback} />
+                <Button btnType="btn" 
+                    title="Próxima pergunta" 
+                    clickCallback={this.props.clickCallback} />
             </div>
         );
     };
@@ -155,9 +157,13 @@ class Dialog extends Component {
                 );
             });
         }
+
+        let status = (this.props.winEasterEggs) ? 'green' : 'red';
+
         return (
             <div className="col-xs-12">
                 <ul>
+                    <li className="rankingList"><div className={"pointFinal " + status}>{this.props.winEasterEggs ? 'Parabens, você ganhou!!!!': 'Você não atingiu a porcentagem necessária para vencer. Tente novamente. :)'}</div></li>
                     <li className="rankingList"><div className="pointFinal">Pontuação Final: {this.props.point}</div></li>
                     <li className="rankingList center">Ranking:</li>
                     {renderRanking()}
@@ -171,7 +177,7 @@ class Dialog extends Component {
             <div>
                 <div className="dropscreen"></div>
                 <div className="card dialog">
-                    <h4>{this.props.message}</h4>
+                    {this.props.showMsgTryAgain ? <h4 className='red-color'>{this.props.message}</h4> : <h4>{this.props.message}</h4>}
                     <p className="center">{this.props.description}</p>
                     {this.props.showScoreFinal ? this.getContentScore() : ''}
                     {this.props.showMsgTryAgain ? this.getLoseContent() : ''}

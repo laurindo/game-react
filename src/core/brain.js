@@ -52,6 +52,14 @@ let generateRandomNumbers = function(size, jumpLoop, position) {
     return track;
 }
 
+/*
+    Calculate if total of questions is greater 85%
+*/
+let goalAim = (questionsCorrect) => {
+    let x = (questionsCorrect*100) / QUESTIONS.length;
+    return x >= 85;
+};
+
 let wrongOrCorrect = (props) => {
     let wrongOrCorrect = Math.floor(Math.random() * 2) + 1;
     if (wrongOrCorrect === 0) { //WRONG
@@ -108,5 +116,5 @@ let getQuestionsSorted = function() {
 
 var brainQuestions = getQuestionsSorted();
 
-export default {brainQuestions, shuffleList, wrongOrCorrect, getGuessProfessionalCareer};
+export default {brainQuestions, shuffleList, wrongOrCorrect, getGuessProfessionalCareer, goalAim};
 

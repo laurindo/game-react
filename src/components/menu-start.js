@@ -28,7 +28,7 @@ export default class MenuStart extends Component {
             <div className="startPage">
                 <div className="menuStart">
                     <div>
-                        <img src="/images/logo.png" />
+                        <img src="/images/olhe-suas-maos2.png" />
                     </div>
                     <div>
                         <input type="text" name="" placeholder="Digite seu nome" onChange={this.props.changeName} />

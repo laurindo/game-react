@@ -97,12 +97,7 @@ class QuestionHelp extends Component {
     }
 
     closeDialogQuitGame() {
-        let that = this;
-        this.closeDialog();
-        this.setState({showDialogExitedGame: true});
-        setTimeout(function() {
-            that.setState({showDialogExitedGame: false, showScore: true});
-        }, 3000);
+        location.reload();
     }
 
     askedExit() {

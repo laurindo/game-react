@@ -41,13 +41,13 @@ var QUIZZ_OBJ = [
    },
     { 
         "question": "Material estéril é considerado:",
-        "choice": ["(a) Desifentado", "(b) Desinfestado", "(c) Asséptico", "(d) Antisséptico"],  //quizObj[2].choice[0],quizObj[2].choice[1]
+        "choice": ["(a) Desifentado", "(b) Desinfestado", "(c) Asséptico", "(d) Antisséptico"], 
         "correct": {position: 3, item: 'd', desc: 'Antisséptico'}
    },
     { 
-        "question": "Autoclave é o aparelho que esteriliza:",
-        "choice": ["(a) A seco", "(b) Por umidade", "(c) Por radiação", "(d) Com desifetante"],  //quizObj[2].choice[0],quizObj[2].choice[1]
-        "correct": {position: 0, item: 'a', desc: 'A seco'}
+        "question": "Autoclave é um aparelho utilizado para esterilizar artigos através de:",
+        "choice": ["(a) A seco", "(b) Calor úmido", "(c) Radiação", "(d) Desifetante"], 
+        "correct": {position: 1, item: 'b', desc: 'Calor úmido'}
    }, 
    { 
         "question": "O objetivo da escovação conhecida como degermacao pré cirúrgica é:",
@@ -110,7 +110,7 @@ var QUIZZ_OBJ = [
         "correct": {position: 2, item: 'c', desc: 'processo que visa a remoção de sugidade visível e, por conseguinte a diminuição da carga microbiana'}
    },
    { 
-        "question": "São características da central de materiais esterilizados, exceto a alternativa",
+        "question": "São características da central de materiais esterilizados, exceto a alternativa:",
         "choice": ["(a) permitir um fluxo contínuo e unidirecional dos materiais", "(b) o enfermeiro não faz parte do quadro de funcionários,  a supervisão é sempre do centro cirúrgico", "(c) é dividida em área suja, área limpa e área estéril", "(d) é responsável pela limpeza, preparo, esterilização, guarda e distribuição de material"], 
         "correct": {position: 1, item: 'b', desc: 'o enfermeiro não faz parte do quadro de funcionários,  a supervisão é sempre do centro cirúrgico'}
    },
@@ -135,11 +135,6 @@ var QUIZZ_OBJ = [
         "correct": {position: 3, item: 'd', desc: 'O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento'}
    },
    { 
-        "question": "Considerando os processos da Desinfecção Química dos produtos para saúde, assinale a alternativa correta:",
-        "choice": ["(a) A desinfecçao química deve ser realizadas apenas para artigos não críticos e pode ser realizada no Centro de Material Esterelizado(CME) ou no próprio setor de internação", "(b) Não é permitida a realização de desinfecção química no CME do serviço de saúde, sendo apenas realizada na empresa processadora terceirazada", "(c) O CME deve realizar a monitorização dos parâmetros indicadores de efetividade dos desinfetantes para artigo crítico, pH ou outros, no mínimo 1 vez por semana", "(d) O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento"], 
-        "correct": {position: 3, item: 'd', desc: 'O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento'}
-   },
-   { 
         "question": "Os processos de esterilização, desinfecções, limpeza e descontaminação são importantes para evitar a propagação de infecções, por meio de materiais e instrumentais cirúrgicos. O processo que possibilita a destruição dos micro-organismos patogênicos, sem q necessariamente sejam eliminados todos os patógenos pela a aplicação direta de meios físicos ou químicos, é denominado de:",
         "choice": ["(a) Esterilização", "(b) antissepsia", "(c) cadeia asséptica", "(d) desinfecção"], 
         "correct": {position: 3, item: 'd', desc: 'desinfecção'}
@@ -153,6 +148,31 @@ var QUIZZ_OBJ = [
         "question": "Qual o sistema de barreira estéril (embalagem) não é indicado para o método de esterilização de óxido de etileno?",
         "choice": ["(a) Papel Grau Cirúrgico", "(b) Tyvek", "(c) Contêiner rígido", "(d) Algodão Tecido"], 
         "correct": {position: 3, item: 'd', desc: 'Algodão Tecido'}
+   },
+   { 
+        "question": "A substância química capaz de destruir germes patogênicos é denominada:",
+        "choice": ["(a) adstringente", "(b) bactericida", "(c) desinfetante", "(d) germicida"], 
+        "correct": {position: 3, item: 'd', desc: 'germicida'}
+   },
+   { 
+        "question": "São parâmetros pré-estabelecidos para o processamento de artigos em CME:",
+        "choice": ["(a) materiais seguramente limpos, desinfetados/esterilizados, livres de biofilmes, endotoxinas, proteínas pirônicas e outros pirógenos e substâncias tóxicas utilizadas no processamento", "(b) Realizar apenas limpeza do material", "(c) Realizar apenas desinfecção do material", "(d) Utilizar somente autoclave"], 
+        "correct": {position: 0, item: 'a', desc: 'materiais seguramente limpos, desinfetados/esterilizados, livres de biofilmes, endotoxinas, proteínas pirônicas e outros pirógenos e substâncias tóxicas utilizadas no processamento'}
+   }, 
+   { 
+        "question": "Entende-se por missão da Central de Material e Esterilização:",
+        "choice": ["(a) Processar somente artigos criticos", "(b) Processar somente artigos semi- criticos", "(c) Realizar somente limpeza e desinfecção", "(d) Garantir que os parâmetros pré estabelecidos para o processamento, foram atingidos e que são reproduziveis, conferindo segurança na prática utilizada"], 
+        "correct": {position: 3, item: 'd', desc: 'Garantir que os parâmetros pré estabelecidos para o processamento, foram atingidos e que são reproduziveis, conferindo segurança na prática utilizada'}
+   },
+   { 
+        "question": "Segundo a criticidade de contaminação, os artigos considerados críticos necessitam de:",
+        "choice": ["(a) Apenas limpeza", "(b) Apenas desinfecção", "(c) Limpeza e desinfecção", "(d) Limpeza e esterilização"], 
+        "correct": {position: 3, item: 'd', desc: 'Limpeza e esterilização'}
+   },
+   { 
+        "question": "Processo de utilização de álcool a 70% na pela, antes de realizar uma punção venosa, é denominado de:",
+        "choice": ["(a) desinfecção", "(b) limpeza", "(c) assepsia", "(d) antissepsia"], 
+        "correct": {position: 3, item: 'd', desc: 'antissepsia'}
    }
    
 ];
