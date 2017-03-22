@@ -19916,7 +19916,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        null,
-	                        _react2.default.createElement('img', { src: 'images/logo.png' })
+	                        _react2.default.createElement('img', { src: 'images/olhe-suas-maos2.png' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -20476,6 +20476,10 @@
 
 	var _general_constant2 = _interopRequireDefault(_general_constant);
 
+	var _brain = __webpack_require__(169);
+
+	var _brain2 = _interopRequireDefault(_brain);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20496,9 +20500,11 @@
 	            showPromptDialog: false,
 	            showDialog: false,
 	            message: '',
+	            desc: '',
 	            isAnswerOk: false,
 	            showAnswerCorrect: false,
-	            showGameOver: false
+	            showGameOver: false,
+	            winEasterEggs: false
 	        };
 	        return _this;
 	    }
@@ -20516,6 +20522,8 @@
 	    }, {
 	        key: 'incrementPos',
 	        value: function incrementPos(event) {
+	            var snd = new Audio("click.wav");
+	            snd.play();
 	            var answerClicked = parseInt(event.target.getAttribute('target'), 10);
 	            var correctAnswer = this.props.correctAnswer;
 	            var isAnswerOk = this.checkAnswer(answerClicked, correctAnswer);
@@ -20525,6 +20533,8 @@
 	    }, {
 	        key: 'callbackYes',
 	        value: function callbackYes() {
+	            var snd = new Audio("click.wav");
+	            snd.play();
 	            var newPos = this.props.position + 1;
 	            var valueSuccess = this.state.isAnswerOk ? this.props.valueSuccess + 1 : this.props.valueSuccess;
 	            var valueError = !this.state.isAnswerOk ? this.props.valueError + 1 : this.props.valueError;
@@ -20532,7 +20542,8 @@
 	                this.setState({
 	                    showDialog: false,
 	                    showPromptDialog: false,
-	                    showGameOver: true
+	                    showGameOver: true,
+	                    winEasterEggs: _brain2.default.goalAim(this.props.valueSuccess)
 	                });
 	                return;
 	            }
@@ -20550,8 +20561,9 @@
 	            var position = this.props.position;
 	            var item = this.props.questions[position];
 	            var options = ['a', 'b', 'c', 'd'];
-	            var message = 'A resposta correta \xE9 o item(' + options[item.correct.position] + ') - ' + item.correct.desc + '.';
-	            that.setState({ showDialog: true, message: message });
+	            var message = 'A resposta correta \xE9 o item(' + options[item.correct.position] + ')';
+	            var desc = '' + item.correct.desc;
+	            that.setState({ showDialog: true, message: message, desc: desc });
 	        }
 	    }, {
 	        key: 'processAnswer',
@@ -20561,7 +20573,16 @@
 	    }, {
 	        key: 'renderGameOver',
 	        value: function renderGameOver() {
-	            return _react2.default.createElement(_dialog2.default, { point: this.props.point, type: _general_constant2.default.dialog.NORMAL, valueSuccess: this.props.valueSuccess, valueError: this.props.valueError, showScoreFinal: true, message: _general_constant2.default.FINISH_GAME, description: _general_constant2.default.CONGRATULATIONS });
+	            var snd = new Audio("lose.ogg");
+	            snd.play();
+	            return _react2.default.createElement(_dialog2.default, { point: this.props.point,
+	                type: _general_constant2.default.dialog.NORMAL,
+	                valueSuccess: this.props.valueSuccess,
+	                valueError: this.props.valueError,
+	                showScoreFinal: true,
+	                winEasterEggs: this.state.winEasterEggs,
+	                message: '',
+	                description: _general_constant2.default.CONGRATULATIONS });
 	        }
 	    }, {
 	        key: 'renderDialogNormal',
@@ -20570,7 +20591,7 @@
 
 	            return _react2.default.createElement(_dialog2.default, { clickCallback: function clickCallback() {
 	                    _this2.callbackYes();
-	                }, type: _general_constant2.default.dialog.NORMAL, showMsgTryAgain: isTryAgain, message: this.state.message });
+	                }, type: _general_constant2.default.dialog.NORMAL, showMsgTryAgain: isTryAgain, description: this.state.desc, message: this.state.message });
 	        }
 	    }, {
 	        key: 'renderDialogPrompt',
@@ -20817,7 +20838,9 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_button2.default, { btnType: 'btn', title: 'Pr\xF3xima pergunta', clickCallback: this.props.clickCallback })
+	                _react2.default.createElement(_button2.default, { btnType: 'btn',
+	                    title: 'Pr\xF3xima pergunta',
+	                    clickCallback: this.props.clickCallback })
 	            );
 	        }
 	    }, {
@@ -20879,12 +20902,24 @@
 	                    );
 	                });
 	            };
+
+	            var status = this.props.winEasterEggs ? 'green' : 'red';
+
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'col-xs-12' },
 	                _react2.default.createElement(
 	                    'ul',
 	                    null,
+	                    _react2.default.createElement(
+	                        'li',
+	                        { className: 'rankingList' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: "pointFinal " + status },
+	                            this.props.winEasterEggs ? 'Parabens, você ganhou!!!!' : 'Você não atingiu a porcentagem necessária para vencer. Tente novamente. :)'
+	                        )
+	                    ),
 	                    _react2.default.createElement(
 	                        'li',
 	                        { className: 'rankingList' },
@@ -20914,7 +20949,11 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'card dialog' },
-	                    _react2.default.createElement(
+	                    this.props.showMsgTryAgain ? _react2.default.createElement(
+	                        'h4',
+	                        { className: 'red-color' },
+	                        this.props.message
+	                    ) : _react2.default.createElement(
 	                        'h4',
 	                        null,
 	                        this.props.message
@@ -21027,6 +21066,14 @@
 	    return track;
 	};
 
+	/*
+	    Calculate if total of questions is greater 85%
+	*/
+	var goalAim = function goalAim(questionsCorrect) {
+	    var x = questionsCorrect * 100 / QUESTIONS.length;
+	    return x >= 85;
+	};
+
 	var wrongOrCorrect = function wrongOrCorrect(props) {
 	    var wrongOrCorrect = Math.floor(Math.random() * 2) + 1;
 	    if (wrongOrCorrect === 0) {
@@ -21084,7 +21131,7 @@
 
 	var brainQuestions = getQuestionsSorted();
 
-	exports.default = { brainQuestions: brainQuestions, shuffleList: shuffleList, wrongOrCorrect: wrongOrCorrect, getGuessProfessionalCareer: getGuessProfessionalCareer };
+	exports.default = { brainQuestions: brainQuestions, shuffleList: shuffleList, wrongOrCorrect: wrongOrCorrect, getGuessProfessionalCareer: getGuessProfessionalCareer, goalAim: goalAim };
 
 /***/ },
 /* 170 */
@@ -21129,12 +21176,12 @@
 	     "correct": { position: 1, item: 'b', desc: 'Autoclave' }
 	}, {
 	     "question": "Material estéril é considerado:",
-	     "choice": ["(a) Desifentado", "(b) Desinfestado", "(c) Asséptico", "(d) Antisséptico"], //quizObj[2].choice[0],quizObj[2].choice[1]
+	     "choice": ["(a) Desifentado", "(b) Desinfestado", "(c) Asséptico", "(d) Antisséptico"],
 	     "correct": { position: 3, item: 'd', desc: 'Antisséptico' }
 	}, {
-	     "question": "Autoclave é o aparelho que esteriliza:",
-	     "choice": ["(a) A seco", "(b) Por umidade", "(c) Por radiação", "(d) Com desifetante"], //quizObj[2].choice[0],quizObj[2].choice[1]
-	     "correct": { position: 0, item: 'a', desc: 'A seco' }
+	     "question": "Autoclave é um aparelho utilizado para esterilizar artigos através de:",
+	     "choice": ["(a) A seco", "(b) Calor úmido", "(c) Radiação", "(d) Desifetante"],
+	     "correct": { position: 1, item: 'b', desc: 'Calor úmido' }
 	}, {
 	     "question": "O objetivo da escovação conhecida como degermacao pré cirúrgica é:",
 	     "choice": ["(a) Realizar a técnica de lavagem das mãos da equipe cirúrgica", "(b) Realizar antisseptico da pele do paciente antes da incisão cirúrgica", "(c) utilizar escova especial para lavar os instrumentais usados em cirurgia", "(d) remover gorduras, sujidades e outros elementos  da pele das mãos e  antebraços da equipe  cirúrgica antes da cirurgia"],
@@ -21184,7 +21231,7 @@
 	     "choice": ["(a) processo que visa a remoção de sugidade somente em artigos críticos", "(b) processo que visa a remoção somente em artigos semicriticos", "(c) processo que visa a remoção de sugidade visível e, por conseguinte a diminuição da carga microbiana", "(d) processo que visa a remoção de sugidade somente em artigos não críticos"],
 	     "correct": { position: 2, item: 'c', desc: 'processo que visa a remoção de sugidade visível e, por conseguinte a diminuição da carga microbiana' }
 	}, {
-	     "question": "São características da central de materiais esterilizados, exceto a alternativa",
+	     "question": "São características da central de materiais esterilizados, exceto a alternativa:",
 	     "choice": ["(a) permitir um fluxo contínuo e unidirecional dos materiais", "(b) o enfermeiro não faz parte do quadro de funcionários,  a supervisão é sempre do centro cirúrgico", "(c) é dividida em área suja, área limpa e área estéril", "(d) é responsável pela limpeza, preparo, esterilização, guarda e distribuição de material"],
 	     "correct": { position: 1, item: 'b', desc: 'o enfermeiro não faz parte do quadro de funcionários,  a supervisão é sempre do centro cirúrgico' }
 	}, {
@@ -21204,10 +21251,6 @@
 	     "choice": ["(a) A desinfecçao química deve ser realizadas apenas para artigos não críticos e pode ser realizada no Centro de Material Esterelizado(CME) ou no próprio setor de internação", "(b) Não é permitida a realização de desinfecção química no CME do serviço de saúde, sendo apenas realizada na empresa processadora terceirazada", "(c) O CME deve realizar a monitorização dos parâmetros indicadores de efetividade dos desinfetantes para artigo crítico, pH ou outros, no mínimo 1 vez por semana", "(d) O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento"],
 	     "correct": { position: 3, item: 'd', desc: 'O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento' }
 	}, {
-	     "question": "Considerando os processos da Desinfecção Química dos produtos para saúde, assinale a alternativa correta:",
-	     "choice": ["(a) A desinfecçao química deve ser realizadas apenas para artigos não críticos e pode ser realizada no Centro de Material Esterelizado(CME) ou no próprio setor de internação", "(b) Não é permitida a realização de desinfecção química no CME do serviço de saúde, sendo apenas realizada na empresa processadora terceirazada", "(c) O CME deve realizar a monitorização dos parâmetros indicadores de efetividade dos desinfetantes para artigo crítico, pH ou outros, no mínimo 1 vez por semana", "(d) O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento"],
-	     "correct": { position: 3, item: 'd', desc: 'O CME que realiza a desinfecção química deve dispor de uma sala exclusiva. Caso o serviço realize desinfecção ou esterelização química líquida automatizada, deve também dispor de área e condições técnicas necessárias para instalação do equipamento' }
-	}, {
 	     "question": "Os processos de esterilização, desinfecções, limpeza e descontaminação são importantes para evitar a propagação de infecções, por meio de materiais e instrumentais cirúrgicos. O processo que possibilita a destruição dos micro-organismos patogênicos, sem q necessariamente sejam eliminados todos os patógenos pela a aplicação direta de meios físicos ou químicos, é denominado de:",
 	     "choice": ["(a) Esterilização", "(b) antissepsia", "(c) cadeia asséptica", "(d) desinfecção"],
 	     "correct": { position: 3, item: 'd', desc: 'desinfecção' }
@@ -21219,6 +21262,26 @@
 	     "question": "Qual o sistema de barreira estéril (embalagem) não é indicado para o método de esterilização de óxido de etileno?",
 	     "choice": ["(a) Papel Grau Cirúrgico", "(b) Tyvek", "(c) Contêiner rígido", "(d) Algodão Tecido"],
 	     "correct": { position: 3, item: 'd', desc: 'Algodão Tecido' }
+	}, {
+	     "question": "A substância química capaz de destruir germes patogênicos é denominada:",
+	     "choice": ["(a) adstringente", "(b) bactericida", "(c) desinfetante", "(d) germicida"],
+	     "correct": { position: 3, item: 'd', desc: 'germicida' }
+	}, {
+	     "question": "São parâmetros pré-estabelecidos para o processamento de artigos em CME:",
+	     "choice": ["(a) materiais seguramente limpos, desinfetados/esterilizados, livres de biofilmes, endotoxinas, proteínas pirônicas e outros pirógenos e substâncias tóxicas utilizadas no processamento", "(b) Realizar apenas limpeza do material", "(c) Realizar apenas desinfecção do material", "(d) Utilizar somente autoclave"],
+	     "correct": { position: 0, item: 'a', desc: 'materiais seguramente limpos, desinfetados/esterilizados, livres de biofilmes, endotoxinas, proteínas pirônicas e outros pirógenos e substâncias tóxicas utilizadas no processamento' }
+	}, {
+	     "question": "Entende-se por missão da Central de Material e Esterilização:",
+	     "choice": ["(a) Processar somente artigos criticos", "(b) Processar somente artigos semi- criticos", "(c) Realizar somente limpeza e desinfecção", "(d) Garantir que os parâmetros pré estabelecidos para o processamento, foram atingidos e que são reproduziveis, conferindo segurança na prática utilizada"],
+	     "correct": { position: 3, item: 'd', desc: 'Garantir que os parâmetros pré estabelecidos para o processamento, foram atingidos e que são reproduziveis, conferindo segurança na prática utilizada' }
+	}, {
+	     "question": "Segundo a criticidade de contaminação, os artigos considerados críticos necessitam de:",
+	     "choice": ["(a) Apenas limpeza", "(b) Apenas desinfecção", "(c) Limpeza e desinfecção", "(d) Limpeza e esterilização"],
+	     "correct": { position: 3, item: 'd', desc: 'Limpeza e esterilização' }
+	}, {
+	     "question": "Processo de utilização de álcool a 70% na pela, antes de realizar uma punção venosa, é denominado de:",
+	     "choice": ["(a) desinfecção", "(b) limpeza", "(c) assepsia", "(d) antissepsia"],
+	     "correct": { position: 3, item: 'd', desc: 'antissepsia' }
 	}];
 
 	exports.default = { QUIZZ_OBJ: QUIZZ_OBJ };
@@ -21379,12 +21442,7 @@
 	    }, {
 	        key: 'closeDialogQuitGame',
 	        value: function closeDialogQuitGame() {
-	            var that = this;
-	            this.closeDialog();
-	            this.setState({ showDialogExitedGame: true });
-	            setTimeout(function () {
-	                that.setState({ showDialogExitedGame: false, showScore: true });
-	            }, 3000);
+	            location.reload();
 	        }
 	    }, {
 	        key: 'askedExit',
