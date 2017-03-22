@@ -354,3 +354,15 @@ body {
     color: #fff;
     text-align: center;
 }
+
+.pointFinal.green {
+    background-color: rgb(120, 255, 159);
+    color: #000;
+}
+.pointFinal.red {
+    background-color: rgb(255, 59, 88);
+}
+
+.red-color {
+    color: rgb(255, 59, 88);
+}
