@@ -10,7 +10,7 @@ export default class AboutGame extends Component {
         return (
             <div>
                 <p className="closeAboutGame" onClick={ () => { this.props.closeDialog() }}>Fechar</p>
-                <div className="aboutGame">
+                <div className={"aboutGame " + this.props.classTutorial}>
                     {this.props.message}
                 </div>
             </div>
