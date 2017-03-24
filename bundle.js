@@ -19883,7 +19883,8 @@
 	        var _this = _possibleConstructorReturn(this, (MenuStart.__proto__ || Object.getPrototypeOf(MenuStart)).call(this));
 
 	        _this.state = {
-	            aboutGame: false
+	            aboutGame: false,
+	            tutorial: false
 	        };
 	        return _this;
 	    }
@@ -19896,11 +19897,121 @@
 	            });
 	        }
 	    }, {
+	        key: 'showDialogTutorial',
+	        value: function showDialogTutorial() {
+	            this.setState({
+	                tutorial: true
+	            });
+	        }
+	    }, {
 	        key: 'hideDialog',
 	        value: function hideDialog() {
 	            this.setState({
-	                aboutGame: false
+	                aboutGame: false,
+	                tutorial: false
 	            });
+	        }
+	    }, {
+	        key: 'tutorial',
+	        value: function tutorial() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'tutorialStep' },
+	                _react2.default.createElement(
+	                    'ul',
+	                    null,
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        '1. Digite seu nome e clique em COME\xC7AR'
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        _react2.default.createElement('img', { src: 'images/tutorial/01.png' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        '2. Escolha a resposta ou pe\xE7a ajuda'
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        _react2.default.createElement('img', { src: 'images/tutorial/02.png' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        '3. Placas \xE9 uma op\xE7\xE3o de ajuda '
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        _react2.default.createElement('img', { src: 'images/tutorial/03.png' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        '4. Outras op\xE7\xF5es de ajuda podem ser escolhidas '
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        _react2.default.createElement('img', { src: 'images/tutorial/04.png' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        '5. Toda vez que voc\xEA acerta, voc\xEA ganha 50 pontos '
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        _react2.default.createElement('img', { src: 'images/tutorial/05.png' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        '6. \xC1rea que mostra os items que voc\xEA acertou e errou '
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        _react2.default.createElement('img', { src: 'images/tutorial/06.png' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        '8. Se voc\xEA errar, um dialog com a resposta correta ir\xE1 aparecer '
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        _react2.default.createElement('img', { src: 'images/tutorial/07.png' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        '9. Caso voc\xEA n\xE3o acerte o minimo de 85% do total de perguntas, tente outra vez. '
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        _react2.default.createElement('img', { src: 'images/tutorial/08.png' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        '10. Caso voc\xEA acerte o minimo de 85%, voc\xEA ganha! '
+	                    ),
+	                    _react2.default.createElement(
+	                        'ol',
+	                        null,
+	                        _react2.default.createElement('img', { src: 'images/tutorial/09.png' })
+	                    )
+	                )
+	            );
 	        }
 	    }, {
 	        key: 'render',
@@ -19916,7 +20027,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        null,
-	                        _react2.default.createElement('img', { src: 'images/olhe-suas-maos2.png' })
+	                        _react2.default.createElement('img', { src: 'images/olhe-suas-maos3.png' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -19929,14 +20040,24 @@
 	                ),
 	                _react2.default.createElement(
 	                    'a',
-	                    { onClick: function onClick() {
+	                    { className: 'aboutGameLink', onClick: function onClick() {
 	                            _this2.showDialog();
 	                        }, href: '#' },
 	                    _general_constant2.default.ABOUT_GAME_TITLE
 	                ),
+	                _react2.default.createElement(
+	                    'a',
+	                    { className: 'tutorial', onClick: function onClick() {
+	                            _this2.showDialogTutorial();
+	                        }, href: '#' },
+	                    _general_constant2.default.TUTORIAL
+	                ),
 	                this.state.aboutGame ? _react2.default.createElement(_aboutGame2.default, { closeDialog: function closeDialog() {
 	                        _this2.hideDialog();
-	                    }, message: _general_constant2.default.ABOUT_GAME }) : ''
+	                    }, message: _general_constant2.default.ABOUT_GAME }) : '',
+	                this.state.tutorial ? _react2.default.createElement(_aboutGame2.default, { classTutorial: 'areaTutorialStep', closeDialog: function closeDialog() {
+	                        _this2.hideDialog();
+	                    }, message: this.tutorial() }) : ''
 	            );
 	        }
 	    }]);
@@ -20070,10 +20191,12 @@
 	    QUIT: 'Desistir',
 	    WANT_TO_QUIT: 'Deseja desistir?',
 	    ABOUT_GAME: 'Jogando Limpo é um jogo de perguntas e respostas.',
+	    TUTORIAL_GAME: '',
 	    ABOUT_GAME_TITLE: 'Sobre o game',
 	    POINTS: 'Pontuação',
 	    FINISH_GAME: 'Fim de Jogo',
 	    CONGRATULATIONS: 'Parabéns, você chegou até o final.',
+	    TUTORIAL: 'Tutorial',
 	    dialog: {
 	        PROMPT: 'prompt',
 	        NORMAL: 'normal'
@@ -20148,7 +20271,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    "div",
-	                    { className: "aboutGame" },
+	                    { className: "aboutGame " + this.props.classTutorial },
 	                    this.props.message
 	                )
 	            );
@@ -20522,8 +20645,6 @@
 	    }, {
 	        key: 'incrementPos',
 	        value: function incrementPos(event) {
-	            var snd = new Audio("click.wav");
-	            snd.play();
 	            var answerClicked = parseInt(event.target.getAttribute('target'), 10);
 	            var correctAnswer = this.props.correctAnswer;
 	            var isAnswerOk = this.checkAnswer(answerClicked, correctAnswer);
@@ -20533,8 +20654,6 @@
 	    }, {
 	        key: 'callbackYes',
 	        value: function callbackYes() {
-	            var snd = new Audio("click.wav");
-	            snd.play();
 	            var newPos = this.props.position + 1;
 	            var valueSuccess = this.state.isAnswerOk ? this.props.valueSuccess + 1 : this.props.valueSuccess;
 	            var valueError = !this.state.isAnswerOk ? this.props.valueError + 1 : this.props.valueError;
