@@ -13,7 +13,8 @@ body {
     color: #fff;
 }
 
-.startPage a {
+.startPage a.tutorial,
+.startPage a.aboutGameLink {
     color: #3296ff;
     text-align: center;
     position: absolute;
@@ -25,6 +26,10 @@ body {
     padding: 8px;
     border-radius: 20px;
     background-color: #fff;
+}
+
+.startPage a.tutorial {
+    right: 120px;    
 }
 
 .menuStart {
@@ -365,4 +370,23 @@ body {
 
 .red-color {
     color: rgb(255, 59, 88);
+}
+
+.areaTutorialStep {
+    padding: 10%;
+}
+
+.tutorialStep {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.tutorialStep ol {
+    margin-bottom: 5px;
+}
+
+.tutorialStep img {
+    width: 80%;
+    height: 80%;
 }
