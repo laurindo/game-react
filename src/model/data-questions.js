@@ -10,7 +10,7 @@ var QUIZZ_OBJ = [
         "correct": {position: 3, item: 'd', desc: 'A desinfecção de materiais consiste em processo de eliminação de microorganismos presentes nos produtos utilizados  para assistência à saúde, porém com menor poder letal que a esterelização, pois não destrói todas as formas de vida microbiana, principalmente os esporos'}
    },
     { 
-        "question": "Assinale a alternativa INCORRETA em relação à esterilização de material de tecido, que deve ser feita com/em:",
+        "question": "Assinale a alternativa correta em relação à esterilização de material de tecido, que deve ser feita com/em:",
         "choice": ["(a) Raios beta", "(b) Raios Gama", "(c) Raios de cobalto", "(d) autoclave"],  //quizObj[2].choice[0],quizObj[2].choice[1]
         "correct": {position: 3, item: 'd', desc: 'autoclave'}
    },
@@ -173,6 +173,26 @@ var QUIZZ_OBJ = [
         "question": "Processo de utilização de álcool a 70% na pela, antes de realizar uma punção venosa, é denominado de:",
         "choice": ["(a) desinfecção", "(b) limpeza", "(c) assepsia", "(d) antissepsia"], 
         "correct": {position: 3, item: 'd', desc: 'antissepsia'}
+   },
+   { 
+        "question": "Sobre o rótulo de identificação da embalagem do produto submetido à esterilização NÃO deve conter:",
+        "choice": ["(a) Nome do produto", "(b) Número do lote", "(c) Nome do responsável pelo setor", "(d) Método de esterilização"], 
+        "correct": {position: 2, item: 'c', desc: 'Pois deve conter o nome do responsável pelo o preparo'}
+   },
+   { 
+        "question": "Qual o local que deve ser colocado o teste Bowie-Dick?",
+        "choice": ["(a) No meio da câmara", "(b) No final da câmara", "(c) Na lateral da câmara", "(d) Próximo ao dreno"], 
+        "correct": {position: 3, item: 'd', desc: 'Próximo ao dreno'}
+   },
+   { 
+        "question": "O teste Bowie-Dick é recomendado uso diário nas autoclaves a vapor úmido com sistema pré-vácuo, ele deve ser feito:",
+        "choice": ["(a) Antes do processamento da primeira carga", "(b) Antes do processamento da segunda carga", "(c) Após o processamento da terceira carga", "(d) No processamento da quarta carga"], 
+        "correct": {position: 0, item: 'a', desc: 'Antes do processamento da primeira carga'}
+   },
+   { 
+        "question": "Expurgo é um setor que se localiza no (a):",
+        "choice": ["(a) centro cirúrgico de material esterilizado com sistema de centralização geral", "(b) sala de operações", "(c) sala de preparo de luvas", "(d) somente no centro cirúrgico"], 
+        "correct": {position: 0, item: 'a', desc: 'centro cirúrgico de material esterilizado com sistema de centralização geral'}
    }
    
 ];
