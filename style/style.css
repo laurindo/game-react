@@ -369,7 +369,7 @@ body {
 }
 
 .red-color {
-    color: rgb(255, 59, 88);
+    color: rgb(255, 59, 88)!important;
 }
 
 .areaTutorialStep {
