@@ -15,11 +15,6 @@ var QUIZZ_OBJ = [
         "correct": {position: 3, item: 'd', desc: 'autoclave'}
    },
     { 
-        "question": "No procedimento básico para esterilização, as caixas metálicas devem:",
-        "choice": ["(a) Ficar bem fechadas", "(b) Permanecer com as tampas separadas", "(c) Permanecer sobre os demais materiais", "(d) ser abertas após a esterilização"],  //quizObj[2].choice[0],quizObj[2].choice[1]
-        "correct": {position: 1, item: 'b' , desc: 'Permanecer com as tampas separadas'}
-   },
-    { 
         "question": "O papel grau cirúrgico e as caixas metálicas perfuradas são embalagens compatíveis com o método de esterilização:",
         "choice": ["(a) Vapor sob pressão e óxido de etileno", "(b) Calor seco e plasma de peróxido de hidrogênio", "(c) Radiação ionizante e calor seco", "(d) Nenhuma opção"],  //quizObj[2].choice[0],quizObj[2].choice[1]
         "correct": {position: 0, item: 'a', desc: 'Vapor sob pressão e óxido de etileno'}
@@ -39,12 +34,7 @@ var QUIZZ_OBJ = [
         "choice": ["(a) Estufa", "(b) Autoclave", "(c) Tendalização", "(d) Pausterização"],  //quizObj[2].choice[0],quizObj[2].choice[1]
         "correct": {position: 1, item: 'b', desc: 'Autoclave'}
    },
-    { 
-        "question": "Material estéril é considerado:",
-        "choice": ["(a) Desifentado", "(b) Desinfestado", "(c) Asséptico", "(d) Antisséptico"], 
-        "correct": {position: 3, item: 'd', desc: 'Antisséptico'}
-   },
-    { 
+   { 
         "question": "Autoclave é um aparelho utilizado para esterilizar artigos através de:",
         "choice": ["(a) A seco", "(b) Calor úmido", "(c) Radiação", "(d) Desifetante"], 
         "correct": {position: 1, item: 'b', desc: 'Calor úmido'}
@@ -188,11 +178,6 @@ var QUIZZ_OBJ = [
         "question": "O teste Bowie-Dick é recomendado uso diário nas autoclaves a vapor úmido com sistema pré-vácuo, ele deve ser feito:",
         "choice": ["(a) Antes do processamento da primeira carga", "(b) Antes do processamento da segunda carga", "(c) Após o processamento da terceira carga", "(d) No processamento da quarta carga"], 
         "correct": {position: 0, item: 'a', desc: 'Antes do processamento da primeira carga'}
-   },
-   { 
-        "question": "Expurgo é um setor que se localiza no (a):",
-        "choice": ["(a) centro cirúrgico de material esterilizado com sistema de centralização geral", "(b) sala de operações", "(c) sala de preparo de luvas", "(d) somente no centro cirúrgico"], 
-        "correct": {position: 0, item: 'a', desc: 'centro cirúrgico de material esterilizado com sistema de centralização geral'}
    }
    
 ];
